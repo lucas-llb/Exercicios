@@ -1,0 +1,3 @@
+﻿1>------ Build started: Project: CollatzConjecture, Configuration: Debug Any CPU ------
+1>CollatzConjecture -> C:\Users\lucas.barbosa\Documents\GitHub\Exercicios\teams\padawan-2020-maringa\csharp\collatz-conjecture\bin\Debug\netcoreapp3.0\CollatzConjecture.dll
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

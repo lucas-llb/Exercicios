@@ -1,0 +1,3 @@
+﻿1>------ Build started: Project: PerfectNumbers, Configuration: Debug Any CPU ------
+1>PerfectNumbers -> C:\Users\lucas.barbosa\Documents\GitHub\Exercicios\teams\padawan-2020-maringa\csharp\perfect-numbers\bin\Debug\netcoreapp3.0\PerfectNumbers.dll
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========

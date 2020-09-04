@@ -1,0 +1,3 @@
+﻿1>------ Build started: Project: Grains, Configuration: Debug Any CPU ------
+1>Grains -> C:\Users\lucas.barbosa\Documents\GitHub\Exercicios\teams\padawan-2020-maringa\csharp\grains\bin\Debug\netcoreapp3.0\Grains.dll
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
