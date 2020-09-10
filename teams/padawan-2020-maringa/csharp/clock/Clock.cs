@@ -1,13 +1,25 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
-public class Clock
+public partial class Clock
 {
-    public int Hora { get; set; }
-    public int Minutes { get; set; }
+    internal int Hora { get; }
+    internal int Minutes { get; }
     public Clock(int hours, int minutes)
     {
-        Hora = hours;
-        Minutes = minutes;
+        Hora = (hours + (minutes / 60)) % 24;
+        Minutes = minutes % 60;
+
+        if (Minutes < 0)
+        {
+            Hora--;
+            Minutes = 60 + Minutes;
+        }
+        if (Hora < 0)
+        {
+            Hora = 24 + Hora;
+        }
+        
     }
 
     public Clock Add(int minutesToAdd)
@@ -19,6 +31,23 @@ public class Clock
 
     public Clock Subtract(int minutesToSubtract)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        var Relogio = new Clock(Hora, Minutes - minutesToSubtract);
+        return Relogio;
     }
+    public override string ToString()
+    {
+        return $"{Hora:0#}:{Minutes:0#}";
+    }
+    public override bool Equals(object obj)
+    {
+        if (ReferenceEquals(this, obj))
+        {
+            return true;
+        }
+
+        return obj is Clock clock && Equals(clock);
+    }
+    public override int GetHashCode() => HashCode.Combine(Hora, Minutes);
 }
+   
+
