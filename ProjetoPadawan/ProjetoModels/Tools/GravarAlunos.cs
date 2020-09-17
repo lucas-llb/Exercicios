@@ -16,11 +16,11 @@ namespace ProjetoPadawan.Tools
                 liteDB.GetCollection<Alunos>().Insert(alunos);
             }
         }
-        public void Deletar(int id)
+        public void Deletar(string cpf)
         {
             using (var liteDB = new LiteDatabase(@"c:\Teste\ProjetoPadawan.db"))
             {
-                liteDB.GetCollection<Alunos>().DeleteMany(q => q.Id == id);
+                liteDB.GetCollection<Alunos>().DeleteMany(q => q.Cpf == cpf);
             }
 
         }

@@ -10,6 +10,6 @@ namespace ProjetoPadawan.Models
         public int Id { get; set; }
         public string Aluno { get; set; }
         public string Materia { get; set; }
-        public double Nota { get; set; }
+        public int Nota { get; set; }
     }
 }

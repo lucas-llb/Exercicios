@@ -10,7 +10,7 @@ namespace ProjetoPadawan.Models
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
-        public string DataCadastro { get; set; }
+        public DateTime DataCadastro { get; set; }
         public string Situacao { get; set; }
     }
 }

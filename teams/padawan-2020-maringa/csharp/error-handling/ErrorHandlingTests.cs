@@ -50,7 +50,7 @@ public class ErrorHandlingTests
 
     // Read more about IDisposable here:
     // https://msdn.microsoft.com/en-us/library/system.idisposable(v=vs.110).aspx
-    [Fact(Skip = "Remove this Skip property to run this test")]
+    [Fact]
     public void DisposableObjectsAreDisposedWhenThrowingAnException()
     {
         var disposableResource = new DisposableResource();
