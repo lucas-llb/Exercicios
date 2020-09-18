@@ -38,7 +38,7 @@ namespace ProjetoPadawan.Controllers
         {
             var gravarnotas = new GravarNotas();
             gravarnotas.Deletar(id);
-            return Ok("Nota removida com sucesso.")
+            return Ok("Nota removida com sucesso.");
         }
     }
 }

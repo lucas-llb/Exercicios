@@ -11,5 +11,7 @@ namespace ProjetoPadawan.Models
         public string Nome { get; set; }
         public string Materia { get; set; }
         public string Situacao { get; set; }
+        public ICollection<Alunos> Alunos { get; set; }
+        public ICollection<Materias> Materias { get; set; }
     }
 }

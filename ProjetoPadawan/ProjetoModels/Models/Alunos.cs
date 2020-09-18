@@ -12,6 +12,8 @@ namespace ProjetoPadawan.Models
         public string Sobrenome { get; set; }
         public string Cpf { get; set; }
         public DateTime DataNascimento { get; set; }
-        public string Curso { get; set; }
+        public Cursos Curso { get; set; }
+        public int IdCurso { get; set; }
+        public ICollection<Notas> Notas { get; set; }
     }
 }

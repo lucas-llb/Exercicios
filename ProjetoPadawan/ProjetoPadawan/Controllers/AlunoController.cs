@@ -36,10 +36,10 @@ namespace ProjetoPadawan.Controllers
 
         [HttpDelete]
         [Route("deletaraluno")]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string cpf)
         {
             var gravaraluno = new GravarAlunos();
-            gravaraluno.Deletar(id);
+            gravaraluno.Deletar(cpf);
             return Ok("Aluno removido do sistema.");
         }
     }

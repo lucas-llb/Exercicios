@@ -52,7 +52,7 @@ namespace ProjetoFrontEnd
                         {
                             aluno.Sobrenome = txt_sobrenome.Text;
                             aluno.Cpf = txt_cpf.Text;
-                            aluno.Curso = txt_curso.Text;
+                            aluno.Curso.Nome = txt_curso.Text;
                             gravarAlunosDB.Add(aluno);
                             lbl_erro.Text = "";
                             lbl_succes.Text = "Cadastro feito com sucesso!";

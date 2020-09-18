@@ -12,5 +12,7 @@ namespace ProjetoPadawan.Models
         public string Descricao { get; set; }
         public DateTime DataCadastro { get; set; }
         public string Situacao { get; set; }
+        public ICollection<Cursos> Curso { get; set; }
+        public ICollection<Notas> Nota { get; set; }
     }
 }

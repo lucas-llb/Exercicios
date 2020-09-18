@@ -19,17 +19,19 @@ namespace ProjetoModels.Tools
             resultRequest.Wait();
             var result = resultRequest.Result.Content.ReadAsStringAsync();
             result.Wait();
-            return result.Result;
+            var resultado = JsonConvert.DeserializeObject<string>(result.Result);
+            return resultado;
         } 
-        public void Deletar(string cpf)
+        public string Deletar(string cpf)
         {
             var url = "https://localhost:5001/AlunoController/deletaraluno";
             var httpClient = new HttpClient();
-            var resultRequest = httpClient.DeleteAsync(url);  //post ou delete
+            var resultRequest = httpClient.DeleteAsync(url+ $"?Guid={cpf}");  //post ou delete
             resultRequest.Wait();
             var result = resultRequest.Result.Content.ReadAsStringAsync();
             result.Wait();
-            result.Result(cpf);
+           var resultado = JsonConvert.DeserializeObject<string>(result.Result);
+            return resultado;
         }
         public List<Alunos> Result()
         {
@@ -39,7 +41,7 @@ namespace ProjetoModels.Tools
             resultRequest.Wait();
             var result = resultRequest.Result.Content.ReadAsStringAsync();
             result.Wait();
-            var retorno = JsonConvert.DeserializeObject(result.Result);
+            var retorno = JsonConvert.DeserializeObject<List<Alunos>>(result.Result);
             return retorno;
         }
     }
