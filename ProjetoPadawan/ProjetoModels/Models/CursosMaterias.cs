@@ -9,8 +9,13 @@ namespace ProjetoModels.Models
     {
         public int CursoID { get; set; }
         public int MateriaID { get; set; }
-        public Cursos Cursos { get; set; }
-        public Materias Materia { get; set; }
+        public virtual Cursos Cursos { get; set; }
+        public virtual Materias Materia { get; set; }
 
+        //public CursosMaterias()
+        //{
+        //    Cursos = new HashSet<Cursos>();
+        //    Materia = new HashSet<Materias>();
+        //}
     }
 }

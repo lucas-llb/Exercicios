@@ -39,7 +39,9 @@ namespace ProjetoFrontEnd
 
         private void btn_voltar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            var inicio = new Inicio();
+            this.Hide();
+            inicio.Show();
         }
     }
 }

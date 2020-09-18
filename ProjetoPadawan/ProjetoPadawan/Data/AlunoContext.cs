@@ -15,6 +15,18 @@ namespace ProjetoPadawan.Data
         public DbSet<Materias> Materias { get; set; }
         public DbSet<Notas> Notas { get; set; }
 
+        public AlunoContext()
+        {
+
+        }
+        public AlunoContext(DbContextOptions<AlunoContext> context):base(context)
+        {
+           
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -41,6 +53,8 @@ namespace ProjetoPadawan.Data
             builder.Entity<Cursos>().Property(q => q.Nome).IsRequired();
             builder.Entity<Cursos>().Property(q => q.Situacao).IsRequired();
             builder.Entity<Cursos>().HasMany(q => q.Alunos).WithOne(q=>q.Curso);
+            builder.Entity<Cursos>().HasMany(q => q.CursoMateria).WithOne(q => q.Cursos);
+
 
 
         }
@@ -52,6 +66,7 @@ namespace ProjetoPadawan.Data
             builder.Entity<Materias>().Property(q => q.Descricao).IsRequired();
             builder.Entity<Materias>().Property(q => q.DataCadastro).IsRequired();
             builder.Entity<Materias>().HasMany(q => q.Nota).WithOne(q => q.Materia);
+            builder.Entity<Materias>().HasMany(q => q.CursosMaterias).WithOne(q => q.Materia);
         }
         public void ModelBuilderNotas(ModelBuilder builder)
         {

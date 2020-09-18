@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProjetoPadawan.Data;
 using ProjetoPadawan.Models;
 using ProjetoPadawan.Tools;
 
@@ -13,14 +14,17 @@ namespace ProjetoPadawan.Controllers
     [ApiController]
     public class CursoController : ControllerBase
     {
+        private readonly AlunoContext db = new AlunoContext(); 
         [HttpGet]
         [Route("listarcurso")]
         public ActionResult Get()
         {
-            var cursos = new List<Cursos>();
-            var gravarcursos = new GravarCursos();
-            cursos = gravarcursos.Result();
-            return Ok(cursos);
+            var listacursos = new List<Cursos>();
+            foreach(var item in db.Curso)
+            {
+                listacursos.Add(item);
+            }
+            return Ok(listacursos);
 
         }
 
@@ -28,16 +32,17 @@ namespace ProjetoPadawan.Controllers
         [Route("cadastrarcurso")]
         public ActionResult Post(Cursos curso)
         {
-            var gravarcurso = new GravarCursos();
-            gravarcurso.Add(curso);
-            return Ok(curso);
+            db.Curso.Add(curso);
+            db.SaveChanges();
+            return Ok("Curso adicionado com Sucesso!");
         }
         [HttpDelete]
         [Route("deletarcurso")]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string nome)
         {
-            var gravarcurso = new GravarCursos();
-            gravarcurso.Deletar(id);
+            var deletado = db.Curso.FirstOrDefault(q => q.Nome == nome);
+            db.Curso.Remove(deletado);
+            db.SaveChanges();
             return Ok("Curso removido do sistema.");
         }
     }

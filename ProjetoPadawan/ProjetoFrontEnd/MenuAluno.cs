@@ -11,6 +11,7 @@ namespace ProjetoFrontEnd
 
     public partial class MenuAluno : Form
     {
+        //Inicio inicio = new Inicio();
         CadastroMateria CadMat = new CadastroMateria();
         CadastrarCurso CadCur = new CadastrarCurso();
         CadastrarAluno CadAlu = new CadastrarAluno();
@@ -40,6 +41,8 @@ namespace ProjetoFrontEnd
 
         private void btn_voltar_Click(object sender, EventArgs e)
         {
+            Inicio inicio = new Inicio();
+            inicio.ShowDialog();
             this.Close();
         }
 

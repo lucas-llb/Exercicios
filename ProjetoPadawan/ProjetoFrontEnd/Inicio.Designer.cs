@@ -62,6 +62,7 @@
             this.btn_professor.TabIndex = 1;
             this.btn_professor.Text = "Professor";
             this.btn_professor.UseVisualStyleBackColor = true;
+            this.btn_professor.Click += new System.EventHandler(this.btn_professor_Click);
             // 
             // btn_admin
             // 
@@ -71,6 +72,7 @@
             this.btn_admin.TabIndex = 1;
             this.btn_admin.Text = "Administrador";
             this.btn_admin.UseVisualStyleBackColor = true;
+            this.btn_admin.Click += new System.EventHandler(this.btn_admin_Click);
             // 
             // Inicio
             // 

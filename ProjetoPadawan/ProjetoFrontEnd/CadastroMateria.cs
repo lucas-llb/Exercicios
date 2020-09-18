@@ -27,7 +27,7 @@ namespace ProjetoFrontEnd
             var rgxdescricao = new Regex(@"([A-Z]|[a-z]|\s)*");
             if (rgxdescricao.IsMatch(txt_nome.Text))
             {
-                materias.Nome = txt_nome.Text;
+                materias.Nome = txt_nome.Text.ToUpper();
                 if (rgxdata.IsMatch(txt_datacadastro.Text))
                 {
                     materias.DataCadastro = Convert.ToDateTime(txt_datacadastro.Text);
@@ -35,7 +35,7 @@ namespace ProjetoFrontEnd
                     {
                         if (txt_situacao.Text.ToUpper() == "ATIVO" || txt_situacao.Text.ToUpper() == "INATIVO")
                         {
-                            materias.Situacao = txt_situacao.Text;
+                            materias.Situacao = txt_situacao.Text.ToUpper();
                             lbl_erro.Text = "";
                             lbl_success.Text = "Matéria salva com sucesso!";
                         }

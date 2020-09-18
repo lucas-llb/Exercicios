@@ -1,10 +1,12 @@
-﻿using ProjetoPadawan.Models;
+﻿using ProjetoModels.Tools;
+using ProjetoPadawan.Models;
 using ProjetoPadawan.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -15,27 +17,20 @@ namespace ProjetoFrontEnd
 {
     public partial class CadastrarAluno : Form
     {
-        private readonly GravarAlunos gravarAlunosDB;
+        private readonly GravarAlunoApi gravarAlunosDB;
+        private readonly GravarCursosApi gravarCursosApi;
         public CadastrarAluno()
         {
             InitializeComponent();
-            gravarAlunosDB = new GravarAlunos();
-
+            gravarAlunosDB = new GravarAlunoApi();
+            gravarCursosApi = new GravarCursosApi();
 
         }
 
         private void btn_gravar_Click(object sender, EventArgs e)
         {
-            var url = "rota";
-            var httpClient = new HttpClient();
-            var resultRequest = httpClient.GetAsync(url);  //post ou delete
-            resultRequest.Wait();
-            var result = resultRequest.Result.Content.ReadAsStringAsync();
-            result.Wait();
-            
-
-
-
+            var listacurso = gravarCursosApi.Result();
+            var listaNomeCurso = listacurso.Where(q => q.Situacao == "ATIVO").Select(q => q.Nome);
             var aluno = new Alunos();
             var rgxNome = new Regex(@"[a-z]|[A-Z]|\s");
             var rgxcpf = new Regex(@"^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$");
@@ -47,15 +42,24 @@ namespace ProjetoFrontEnd
                     aluno.DataNascimento = Convert.ToDateTime(txt_datanasc.Text);
                     if (rgxNome.IsMatch(txt_nome.Text))
                     {
-                        aluno.Nome = txt_nome.Text;
+                        aluno.Nome = txt_nome.Text.ToUpper();
                         if (rgxcpf.IsMatch(txt_cpf.Text))
                         {
-                            aluno.Sobrenome = txt_sobrenome.Text;
+                            aluno.Sobrenome = txt_sobrenome.Text.ToUpper();
                             aluno.Cpf = txt_cpf.Text;
-                            aluno.Curso.Nome = txt_curso.Text;
-                            gravarAlunosDB.Add(aluno);
-                            lbl_erro.Text = "";
-                            lbl_succes.Text = "Cadastro feito com sucesso!";
+                            if (listaNomeCurso.Contains(txt_curso.Text.ToUpper()))
+                            {
+                                aluno.Curso.Nome = txt_curso.Text.ToUpper();
+                                gravarAlunosDB.Add(aluno);
+                                lbl_erro.Text = "";
+                                lbl_succes.Text = "Cadastro feito com sucesso!";
+                            }
+                            else
+                            {
+                                lbl_erro.Text = "Curso não foi cadastrado!";
+                            }
+                        
+
                         }
                         else
                         {

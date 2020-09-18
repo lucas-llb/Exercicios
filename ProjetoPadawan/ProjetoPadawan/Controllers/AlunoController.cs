@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProjetoModels;
+using ProjetoPadawan.Data;
 using ProjetoPadawan.Models;
 using ProjetoPadawan.Tools;
 
@@ -14,32 +15,36 @@ namespace ProjetoPadawan.Controllers
     [Route("AlunoController")]
     public class AlunoController : ControllerBase
     {
+        private readonly AlunoContext db = new AlunoContext();
         [HttpGet]
         [Route("listaraluno")]
         public ActionResult Get()
         {
-            var alunos = new List<Alunos>();
-            var gravaraluno = new GravarAlunos();
-            alunos = gravaraluno.Result();
+            var listaralunos = new List<Alunos>();
+            foreach(var item in db.Aluno)
+            {
+                listaralunos.Add(item);
+            }
 
-            return Ok(alunos);
+            return Ok(listaralunos);
         }
 
         [HttpPost]
         [Route("cadastraraluno")]
         public ActionResult Post(Alunos aluno)
         {
-            var gravaraluno = new GravarAlunos();
-            gravaraluno.Add(aluno);
-            return Ok(aluno);
+            db.Aluno.Add(aluno);
+            db.SaveChanges();
+            return Ok("Aluno cadastrado com sucesso!");
         }
 
         [HttpDelete]
         [Route("deletaraluno")]
         public ActionResult Delete(string cpf)
         {
-            var gravaraluno = new GravarAlunos();
-            gravaraluno.Deletar(cpf);
+            var deletado = db.Aluno.FirstOrDefault(q => q.Cpf == cpf);
+            db.Aluno.Remove(deletado);
+            db.SaveChanges();
             return Ok("Aluno removido do sistema.");
         }
     }

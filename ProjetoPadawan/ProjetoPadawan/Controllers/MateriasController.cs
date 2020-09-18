@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProjetoPadawan.Data;
 using ProjetoPadawan.Models;
 using ProjetoPadawan.Tools;
 
@@ -13,31 +14,35 @@ namespace ProjetoPadawan.Controllers
     [ApiController]
     public class MateriasController : ControllerBase
     {
+        private readonly AlunoContext db = new AlunoContext();
         [HttpGet]
         [Route("listarmaterias")]
         public ActionResult Get()
         {
-            var materia = new List<Materias>();
-            var gravarmateria = new GravarMaterias();
-            materia = gravarmateria.Result();
-            return Ok(materia);
+            var listarmateria = new List<Materias>();
+            foreach (var item in db.Materias)
+            {
+                listarmateria.Add(item);
+            }
+            return Ok(listarmateria);
         }
 
         [HttpPost]
         [Route("cadastrarmateria")]
         public ActionResult Post(Materias materia)
         {
-            var gravarmateria = new GravarMaterias();
-            gravarmateria.Add(materia);
-            return Ok(materia);
+            db.Materias.Add(materia);
+            db.SaveChanges();
+            return Ok("Matéria cadastrada com sucesso!");
         }
 
         [HttpDelete]
         [Route("deletarmateria")]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string nome)
         {
-            var gravarmateria = new GravarMaterias();
-            gravarmateria.Deletar(id);
+            var deletado = db.Materias.FirstOrDefault(q => q.Nome == nome);
+            db.Materias.Remove(deletado);
+            db.SaveChanges();
             return Ok("Materia removida do sistema.");
         }
     }

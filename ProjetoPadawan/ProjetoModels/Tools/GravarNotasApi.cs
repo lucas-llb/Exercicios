@@ -7,13 +7,13 @@ using System.Text;
 
 namespace ProjetoModels.Tools
 {
-    public class GravarCursosApi
+    public class GravarNotasApi
     {
-        public string Add(Cursos curso)
+        public string Add(Notas nota)
         {
-            var url = "https://localhost:5001/CursoController/cadastrarcurso";
+            var url = "https://localhost:5001/NotasController/cadastrarnota";
             var httpClient = new HttpClient();
-            var serializedObject = JsonConvert.SerializeObject(curso);
+            var serializedObject = JsonConvert.SerializeObject(nota);
             var content = new StringContent(serializedObject, Encoding.UTF8, "application/json");
             var resultRequest = httpClient.PostAsync(url, content);  //post ou delete
             resultRequest.Wait();
@@ -21,26 +21,26 @@ namespace ProjetoModels.Tools
             result.Wait();
             return result.Result;
         }
-        public string Deletar(string nome)
+        public string Deletar(int id)
         {
-            var url = "https://localhost:5001/CursoController/deletarcurso";
+            var url = "https://localhost:5001/NotasController/deletarnotas";
             var httpClient = new HttpClient();
-            var resultRequest = httpClient.DeleteAsync(url + $"?nome={nome}");  //post ou delete
+            var resultRequest = httpClient.DeleteAsync(url + $"?id={id}");  //post ou delete
             resultRequest.Wait();
             var result = resultRequest.Result.Content.ReadAsStringAsync();
             result.Wait();
             var resultado = JsonConvert.DeserializeObject<string>(result.Result);
             return resultado;
         }
-        public List<Cursos> Result()
+        public List<Notas> Result()
         {
-            var url = "https://localhost:5001/CursoController/listarcurso";
+            var url = "https://localhost:5001/NotasController/listarnotas";
             var httpClient = new HttpClient();
             var resultRequest = httpClient.GetAsync(url);  //post ou delete
             resultRequest.Wait();
             var result = resultRequest.Result.Content.ReadAsStringAsync();
             result.Wait();
-            var retorno = JsonConvert.DeserializeObject<List<Cursos>>(result.Result);
+            var retorno = JsonConvert.DeserializeObject<List<Notas>>(result.Result);
             return retorno;
         }
     }

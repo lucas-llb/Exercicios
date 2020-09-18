@@ -7,13 +7,13 @@ using System.Text;
 
 namespace ProjetoModels.Tools
 {
-    public class GravarCursosApi
+    public class GravarMateriasApi
     {
-        public string Add(Cursos curso)
+        public string Add(Materias materia)
         {
-            var url = "https://localhost:5001/CursoController/cadastrarcurso";
+            var url = "https://localhost:5001/MateriaController/cadastrarmateria";
             var httpClient = new HttpClient();
-            var serializedObject = JsonConvert.SerializeObject(curso);
+            var serializedObject = JsonConvert.SerializeObject(materia);
             var content = new StringContent(serializedObject, Encoding.UTF8, "application/json");
             var resultRequest = httpClient.PostAsync(url, content);  //post ou delete
             resultRequest.Wait();
@@ -23,7 +23,7 @@ namespace ProjetoModels.Tools
         }
         public string Deletar(string nome)
         {
-            var url = "https://localhost:5001/CursoController/deletarcurso";
+            var url = "https://localhost:5001/MateriaController/deletarmateria";
             var httpClient = new HttpClient();
             var resultRequest = httpClient.DeleteAsync(url + $"?nome={nome}");  //post ou delete
             resultRequest.Wait();
@@ -32,15 +32,15 @@ namespace ProjetoModels.Tools
             var resultado = JsonConvert.DeserializeObject<string>(result.Result);
             return resultado;
         }
-        public List<Cursos> Result()
+        public List<Materias> Result()
         {
-            var url = "https://localhost:5001/CursoController/listarcurso";
+            var url = "https://localhost:5001/MateriaController/listarmaterias";
             var httpClient = new HttpClient();
             var resultRequest = httpClient.GetAsync(url);  //post ou delete
             resultRequest.Wait();
             var result = resultRequest.Result.Content.ReadAsStringAsync();
             result.Wait();
-            var retorno = JsonConvert.DeserializeObject<List<Cursos>>(result.Result);
+            var retorno = JsonConvert.DeserializeObject<List<Materias>>(result.Result);
             return retorno;
         }
     }
