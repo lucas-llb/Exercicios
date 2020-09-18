@@ -20,10 +20,9 @@ namespace ProjetoPadawan.Controllers
         public ActionResult Get(string nome)
         {
             var listarNotas = new List<Notas>();
-            var listanome = db.Notas;
+            var listanome = db.Notas.Where(q=>q.Aluno.Nome == nome).ToList();
             foreach (var item in listanome )
             {
-                if(listanome.)
                 listarNotas.Add(item);
             }
             return Ok(listarNotas);
