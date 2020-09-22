@@ -44,6 +44,7 @@
             this.btn_excluir = new System.Windows.Forms.Button();
             this.lbl_erro = new System.Windows.Forms.Label();
             this.lbl_succes = new System.Windows.Forms.Label();
+            this.txt_listaaluno = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -186,11 +187,20 @@
             this.lbl_succes.Size = new System.Drawing.Size(0, 25);
             this.lbl_succes.TabIndex = 6;
             // 
+            // txt_listaaluno
+            // 
+            this.txt_listaaluno.Location = new System.Drawing.Point(457, 120);
+            this.txt_listaaluno.Multiline = true;
+            this.txt_listaaluno.Name = "txt_listaaluno";
+            this.txt_listaaluno.Size = new System.Drawing.Size(275, 263);
+            this.txt_listaaluno.TabIndex = 7;
+            // 
             // CadastrarAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 511);
+            this.ClientSize = new System.Drawing.Size(763, 511);
+            this.Controls.Add(this.txt_listaaluno);
             this.Controls.Add(this.lbl_succes);
             this.Controls.Add(this.lbl_erro);
             this.Controls.Add(this.btn_excluir);
@@ -232,5 +242,6 @@
         private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Label lbl_erro;
         private System.Windows.Forms.Label lbl_succes;
+        private System.Windows.Forms.TextBox txt_listaaluno;
     }
 }

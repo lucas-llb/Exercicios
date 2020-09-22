@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoPadawan.Data;
 using ProjetoPadawan.Models;
-using ProjetoPadawan.Tools;
 
 namespace ProjetoPadawan.Controllers
 {
@@ -40,10 +36,17 @@ namespace ProjetoPadawan.Controllers
         [Route("deletarmateria")]
         public ActionResult Delete(string nome)
         {
-            var deletado = db.Materias.FirstOrDefault(q => q.Nome == nome);
-            db.Materias.Remove(deletado);
-            db.SaveChanges();
-            return Ok("Materia removida do sistema.");
+            try
+            {
+                var deletado = db.Materias.FirstOrDefault(q => q.Nome == nome);
+                db.Materias.Remove(deletado);
+                db.SaveChanges();
+                return Ok("Materia removida do sistema.");
+            }
+            catch
+            {
+                return Ok("Matéria não encontrada!");
+            }
         }
     }
 }

@@ -34,6 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txt_aluno = new System.Windows.Forms.TextBox();
             this.txt_lista = new System.Windows.Forms.TextBox();
+            this.btn_listar = new System.Windows.Forms.Button();
+            this.btn_voltar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -57,9 +59,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(80, 95);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 15);
+            this.label2.Size = new System.Drawing.Size(34, 15);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Nome: ";
+            this.label2.Text = "CPF: ";
             // 
             // txt_aluno
             // 
@@ -76,11 +78,33 @@
             this.txt_lista.Size = new System.Drawing.Size(328, 229);
             this.txt_lista.TabIndex = 2;
             // 
+            // btn_listar
+            // 
+            this.btn_listar.Location = new System.Drawing.Point(383, 460);
+            this.btn_listar.Name = "btn_listar";
+            this.btn_listar.Size = new System.Drawing.Size(126, 47);
+            this.btn_listar.TabIndex = 3;
+            this.btn_listar.Text = "Listar";
+            this.btn_listar.UseVisualStyleBackColor = true;
+            this.btn_listar.Click += new System.EventHandler(this.btn_listar_Click);
+            // 
+            // btn_voltar
+            // 
+            this.btn_voltar.Location = new System.Drawing.Point(80, 460);
+            this.btn_voltar.Name = "btn_voltar";
+            this.btn_voltar.Size = new System.Drawing.Size(126, 47);
+            this.btn_voltar.TabIndex = 3;
+            this.btn_voltar.Text = "Voltar";
+            this.btn_voltar.UseVisualStyleBackColor = true;
+            this.btn_voltar.Click += new System.EventHandler(this.btn_voltar_Click);
+            // 
             // ListarNotas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(592, 540);
+            this.Controls.Add(this.btn_voltar);
+            this.Controls.Add(this.btn_listar);
             this.Controls.Add(this.txt_lista);
             this.Controls.Add(this.txt_aluno);
             this.Controls.Add(this.label2);
@@ -99,5 +123,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txt_aluno;
         private System.Windows.Forms.TextBox txt_lista;
+        private System.Windows.Forms.Button btn_listar;
+        private System.Windows.Forms.Button btn_voltar;
     }
 }

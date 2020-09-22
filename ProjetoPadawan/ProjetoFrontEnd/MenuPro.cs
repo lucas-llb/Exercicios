@@ -23,19 +23,18 @@ namespace ProjetoFrontEnd
         private void btn_cadCurso_Click(object sender, EventArgs e)
         {
             CadCur.ShowDialog();
-            this.Close();
+          
         }
 
         private void btn_cadAluno_Click(object sender, EventArgs e)
         {
             CadAlu.ShowDialog();
-            this.Close();
         }
 
         private void btn_cadMateria_Click(object sender, EventArgs e)
         {
+
             CadMat.ShowDialog();
-            this.Close();
         }
 
         private void btn_voltar_Click(object sender, EventArgs e)
@@ -46,7 +45,7 @@ namespace ProjetoFrontEnd
         private void btn_cadNota_Click(object sender, EventArgs e)
         {
             CadNota.ShowDialog();
-            this.Close();
+            //this.Close();
         }
     }
 }

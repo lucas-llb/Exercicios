@@ -40,6 +40,9 @@
             this.btn_excluir = new System.Windows.Forms.Button();
             this.lbl_erro = new System.Windows.Forms.Label();
             this.lbl_success = new System.Windows.Forms.Label();
+            this.txt_id = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txt_listarnota = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -118,6 +121,7 @@
             this.btn_voltar.TabIndex = 5;
             this.btn_voltar.Text = "Voltar";
             this.btn_voltar.UseVisualStyleBackColor = true;
+            this.btn_voltar.Click += new System.EventHandler(this.btn_voltar_Click);
             // 
             // btn_excluir
             // 
@@ -127,6 +131,7 @@
             this.btn_excluir.TabIndex = 5;
             this.btn_excluir.Text = "Excluir";
             this.btn_excluir.UseVisualStyleBackColor = true;
+            this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
             // 
             // lbl_erro
             // 
@@ -148,11 +153,38 @@
             this.lbl_success.Size = new System.Drawing.Size(0, 21);
             this.lbl_success.TabIndex = 7;
             // 
+            // txt_id
+            // 
+            this.txt_id.Location = new System.Drawing.Point(285, 324);
+            this.txt_id.Name = "txt_id";
+            this.txt_id.Size = new System.Drawing.Size(133, 23);
+            this.txt_id.TabIndex = 8;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(256, 327);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(23, 15);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Id: ";
+            // 
+            // txt_listarnota
+            // 
+            this.txt_listarnota.Location = new System.Drawing.Point(396, 103);
+            this.txt_listarnota.Multiline = true;
+            this.txt_listarnota.Name = "txt_listarnota";
+            this.txt_listarnota.Size = new System.Drawing.Size(379, 205);
+            this.txt_listarnota.TabIndex = 4;
+            // 
             // CadastroNotas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(466, 450);
+            this.ClientSize = new System.Drawing.Size(832, 450);
+            this.Controls.Add(this.txt_listarnota);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txt_id);
             this.Controls.Add(this.lbl_success);
             this.Controls.Add(this.lbl_erro);
             this.Controls.Add(this.btn_excluir);
@@ -186,5 +218,8 @@
         private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Label lbl_erro;
         private System.Windows.Forms.Label lbl_success;
+        private System.Windows.Forms.TextBox txt_id;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txt_listarnota;
     }
 }

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using ProjetoModels;
 using ProjetoPadawan.Data;
 using ProjetoPadawan.Models;
-using ProjetoPadawan.Tools;
 
 namespace ProjetoPadawan.Controllers
 {

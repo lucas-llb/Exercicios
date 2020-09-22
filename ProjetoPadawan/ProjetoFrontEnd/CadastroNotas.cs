@@ -36,16 +36,22 @@ namespace ProjetoFrontEnd
             {
                 if (listaalunos.Contains(txt_aluno.Text.ToUpper()))
                 {
-                    nota.Aluno.Nome = txt_aluno.Text;
+                    nota.Aluno.Nome = txt_aluno.Text.ToUpper();
                     if (listamaterias.Contains(txt_materia.Text.ToUpper()))
                     {
                         if (rgxnota.IsMatch(txt_nota.Text))
                         {
+                            txt_listarnota.Text = "";
                             nota.Nota = Convert.ToInt32(txt_nota.Text);
                             nota.Materia.Nome = txt_materia.Text;
                             gravarNotasApi.Add(nota);
                             lbl_erro.Text = "";
                             lbl_success.Text = "Nota cadastrada com sucesso!";
+                            var listarnota = gravarNotasApi.Result();
+                            foreach(var item in listarnota)
+                            {
+                                txt_listarnota.Text += $"Id:{item.Id}\tAluno:{item.Aluno}\tMatéria:{item.Materia}\tNota:{item.Nota}{Environment.NewLine}";
+                            }
                         }
                         else
                         {
@@ -66,6 +72,24 @@ namespace ProjetoFrontEnd
             {
                 lbl_erro.Text = "O campo aluno deve conter apenas letras!";
             }
+        }
+
+        private void btn_voltar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btn_excluir_Click(object sender, EventArgs e)
+        {
+            txt_listarnota.Text = "";
+            var id = Convert.ToInt32(txt_id.Text);
+            gravarNotasApi.Deletar(id);
+            var listarnota = gravarNotasApi.Result();
+            foreach (var item in listarnota)
+            {
+                txt_listarnota.Text += $"Id:{item.Id}\tAluno:{item.Aluno}\tMatéria:{item.Materia}\tNota:{item.Nota}{Environment.NewLine}";
+            }
+
         }
     }
 }

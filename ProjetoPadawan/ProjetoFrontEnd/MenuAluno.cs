@@ -23,33 +23,31 @@ namespace ProjetoFrontEnd
 
         private void btn_cadCurso_Click(object sender, EventArgs e)
         {
-            CadCur.ShowDialog();
-            this.Close();
+            CadCur.Show();
+           // this.Hide();
         }
 
         private void btn_cadAluno_Click(object sender, EventArgs e)
         {
-            CadAlu.ShowDialog();
-            this.Close();
+            CadAlu.Show();
+            //this.Hide();
         }
 
         private void btn_cadMateria_Click(object sender, EventArgs e)
         {
-            CadMat.ShowDialog();
-            this.Close();
+            CadMat.Show();
+            //this.Hide();
         }
 
         private void btn_voltar_Click(object sender, EventArgs e)
         {
-            Inicio inicio = new Inicio();
-            inicio.ShowDialog();
             this.Close();
         }
 
         private void btn_ListNota_Click(object sender, EventArgs e)
         {
             ListNota.ShowDialog();
-            this.Close();
+            //this.Hide();
         }
     }
 }

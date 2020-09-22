@@ -11,7 +11,7 @@ namespace ProjetoModels.Tools
     {
         public string Add(Alunos alunos)
         {
-            var url = "https://localhost:5001/AlunoController/cadastraraluno";
+            var url = "https://localhost:44360/AlunoController/cadastraraluno";
             var httpClient = new HttpClient();
             var serializedObject = JsonConvert.SerializeObject(alunos);
             var content = new StringContent(serializedObject, Encoding.UTF8, "application/json");
@@ -19,23 +19,23 @@ namespace ProjetoModels.Tools
             resultRequest.Wait();
             var result = resultRequest.Result.Content.ReadAsStringAsync();
             result.Wait();
-            var resultado = JsonConvert.DeserializeObject<string>(result.Result);
-            return resultado;
+            //var resultado = JsonConvert.DeserializeObject<string>(result.Result);
+            return result.ToString();
         } 
         public string Deletar(string cpf)
         {
-            var url = "https://localhost:5001/AlunoController/deletaraluno";
+            var url = "https://localhost:44360/AlunoController/deletaraluno";
             var httpClient = new HttpClient();
-            var resultRequest = httpClient.DeleteAsync(url+ $"?Guid={cpf}");  //post ou delete
+            var resultRequest = httpClient.DeleteAsync(url+ $"?cpf={cpf}");  //post ou delete
             resultRequest.Wait();
             var result = resultRequest.Result.Content.ReadAsStringAsync();
             result.Wait();
-           var resultado = JsonConvert.DeserializeObject<string>(result.Result);
-            return resultado;
+           //var resultado = JsonConvert.DeserializeObject<string>(result.Result);
+            return result.ToString();
         }
         public List<Alunos> Result()
         {
-            var url = "https://localhost:5001/AlunoController/listaraluno";
+            var url = "https://localhost:44360/AlunoController/listaraluno";
             var httpClient = new HttpClient();
             var resultRequest = httpClient.GetAsync(url);  //post ou delete
             resultRequest.Wait();

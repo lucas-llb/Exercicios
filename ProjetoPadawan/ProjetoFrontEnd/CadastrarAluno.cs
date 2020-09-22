@@ -1,14 +1,8 @@
 ﻿using ProjetoModels.Tools;
 using ProjetoPadawan.Models;
-using ProjetoPadawan.Tools;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -49,10 +43,19 @@ namespace ProjetoFrontEnd
                             aluno.Cpf = txt_cpf.Text;
                             if (listaNomeCurso.Contains(txt_curso.Text.ToUpper()))
                             {
-                                aluno.Curso.Nome = txt_curso.Text.ToUpper();
+                                
+                                var curso = listacurso.Where(q => q.Nome == txt_curso.Text.ToUpper()).Select(q => q.Id);
+                                txt_listaaluno.Text = "";
+                                //aluno.Curso.Nome = txt_curso.Text.ToUpper();
+                                aluno.IdCurso = curso.FirstOrDefault(); 
                                 gravarAlunosDB.Add(aluno);
                                 lbl_erro.Text = "";
                                 lbl_succes.Text = "Cadastro feito com sucesso!";
+                                var listaaluno = gravarAlunosDB.Result();
+                                foreach(var item in listaaluno)
+                                {
+                                    txt_listaaluno.Text += $"Aluno:{item.Nome}\tCPF:{item.Cpf}{Environment.NewLine}";
+                                }
                             }
                             else
                             {
@@ -97,6 +100,7 @@ namespace ProjetoFrontEnd
 
         private void btn_excluir_Click(object sender, EventArgs e)
         {
+            txt_listaaluno.Text = "";
             var rgxcpf = new Regex(@"^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$");
             if(txt_cpf.Text is null)
             {
@@ -107,6 +111,11 @@ namespace ProjetoFrontEnd
                 if (rgxcpf.IsMatch(txt_cpf.Text))
                 {
                     gravarAlunosDB.Deletar(txt_cpf.Text);
+                    var listaaluno = gravarAlunosDB.Result();
+                    foreach (var item in listaaluno)
+                    {
+                        txt_listaaluno.Text += $"Aluno:{item.Nome}\tCPF:{item.Cpf}{Environment.NewLine}";
+                    }
                 }
                 else
                 {

@@ -26,6 +26,7 @@ namespace ProjetoPadawan.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer("Data Source = NT-04780\\SQLEXPRESS; database = BancoBoletimAPI2; Trusted_Connection=True;MultipleActiveResultSets=True");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -54,9 +55,6 @@ namespace ProjetoPadawan.Data
             builder.Entity<Cursos>().Property(q => q.Situacao).IsRequired();
             builder.Entity<Cursos>().HasMany(q => q.Alunos).WithOne(q=>q.Curso);
             builder.Entity<Cursos>().HasMany(q => q.CursoMateria).WithOne(q => q.Cursos);
-
-
-
         }
         public void ModelBuilderMaterias(ModelBuilder builder)
         {

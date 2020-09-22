@@ -11,7 +11,7 @@ namespace ProjetoModels.Tools
     {
         public string Add(Materias materia)
         {
-            var url = "https://localhost:5001/MateriaController/cadastrarmateria";
+            var url = "https://localhost:44360/MateriaController/cadastrarmateria";
             var httpClient = new HttpClient();
             var serializedObject = JsonConvert.SerializeObject(materia);
             var content = new StringContent(serializedObject, Encoding.UTF8, "application/json");
@@ -23,18 +23,18 @@ namespace ProjetoModels.Tools
         }
         public string Deletar(string nome)
         {
-            var url = "https://localhost:5001/MateriaController/deletarmateria";
+            var url = "https://localhost:44360/MateriaController/deletarmateria";
             var httpClient = new HttpClient();
             var resultRequest = httpClient.DeleteAsync(url + $"?nome={nome}");  //post ou delete
             resultRequest.Wait();
             var result = resultRequest.Result.Content.ReadAsStringAsync();
             result.Wait();
-            var resultado = JsonConvert.DeserializeObject<string>(result.Result);
-            return resultado;
+            //var resultado = JsonConvert.DeserializeObject<string>(result.Result);
+            return result.ToString();
         }
         public List<Materias> Result()
         {
-            var url = "https://localhost:5001/MateriaController/listarmaterias";
+            var url = "https://localhost:44360/MateriaController/listarmaterias";
             var httpClient = new HttpClient();
             var resultRequest = httpClient.GetAsync(url);  //post ou delete
             resultRequest.Wait();

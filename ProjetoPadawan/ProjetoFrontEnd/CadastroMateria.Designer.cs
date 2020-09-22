@@ -42,6 +42,7 @@
             this.lbl_success = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txt_nome = new System.Windows.Forms.TextBox();
+            this.txt_listarmateria = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -168,11 +169,20 @@
             this.txt_nome.Size = new System.Drawing.Size(223, 23);
             this.txt_nome.TabIndex = 2;
             // 
+            // txt_listarmateria
+            // 
+            this.txt_listarmateria.Location = new System.Drawing.Point(425, 90);
+            this.txt_listarmateria.Multiline = true;
+            this.txt_listarmateria.Name = "txt_listarmateria";
+            this.txt_listarmateria.Size = new System.Drawing.Size(265, 257);
+            this.txt_listarmateria.TabIndex = 2;
+            // 
             // CadastroMateria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 484);
+            this.ClientSize = new System.Drawing.Size(757, 484);
+            this.Controls.Add(this.txt_listarmateria);
             this.Controls.Add(this.txt_nome);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lbl_success);
@@ -210,5 +220,6 @@
         private System.Windows.Forms.Label lbl_success;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txt_nome;
+        private System.Windows.Forms.TextBox txt_listarmateria;
     }
 }

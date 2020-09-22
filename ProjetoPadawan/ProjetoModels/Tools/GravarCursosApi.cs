@@ -11,7 +11,7 @@ namespace ProjetoModels.Tools
     {
         public string Add(Cursos curso)
         {
-            var url = "https://localhost:5001/CursoController/cadastrarcurso";
+            var url = "https://localhost:44360/CursoController/cadastrarcurso";
             var httpClient = new HttpClient();
             var serializedObject = JsonConvert.SerializeObject(curso);
             var content = new StringContent(serializedObject, Encoding.UTF8, "application/json");
@@ -23,18 +23,18 @@ namespace ProjetoModels.Tools
         }
         public string Deletar(string nome)
         {
-            var url = "https://localhost:5001/CursoController/deletarcurso";
+            var url = "https://localhost:44360/CursoController/deletarcurso";
             var httpClient = new HttpClient();
             var resultRequest = httpClient.DeleteAsync(url + $"?nome={nome}");  //post ou delete
             resultRequest.Wait();
             var result = resultRequest.Result.Content.ReadAsStringAsync();
             result.Wait();
-            var resultado = JsonConvert.DeserializeObject<string>(result.Result);
-            return resultado;
+            //var resultado = JsonConvert.DeserializeObject<string>(result.Result);
+            return result.ToString();
         }
         public List<Cursos> Result()
         {
-            var url = "https://localhost:5001/CursoController/listarcurso";
+            var url = "https://localhost:44360/CursoController/listarcurso";
             var httpClient = new HttpClient();
             var resultRequest = httpClient.GetAsync(url);  //post ou delete
             resultRequest.Wait();

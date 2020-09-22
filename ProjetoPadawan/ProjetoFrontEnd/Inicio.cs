@@ -12,9 +12,6 @@ namespace ProjetoFrontEnd
 {
     public partial class Inicio : Form
     {
-        MenuAdm menuAdm = new MenuAdm();
-        MenuAluno menuAluno = new MenuAluno();
-        MenuPro menuPro = new MenuPro();
         public Inicio()
         {
             InitializeComponent();
@@ -22,20 +19,23 @@ namespace ProjetoFrontEnd
 
         private void btn_aluno_Click(object sender, EventArgs e)
         {
-            menuAluno.ShowDialog();
-            this.Close();
+            MenuAluno menuAluno = new MenuAluno();
+            menuAluno.Show();
+            //this.Hide();
         }
 
         private void btn_professor_Click(object sender, EventArgs e)
         {
-            menuPro.ShowDialog();
-            this.Close();
+            MenuPro menuPro = new MenuPro();
+            menuPro.Show();
+            //this.Hide();
         }
 
         private void btn_admin_Click(object sender, EventArgs e)
         {
-            menuAdm.ShowDialog();
-            this.Close();
+        MenuAdm menuAdm = new MenuAdm();
+            menuAdm.Show();
+            //this.Hide();
         }
     }
 }

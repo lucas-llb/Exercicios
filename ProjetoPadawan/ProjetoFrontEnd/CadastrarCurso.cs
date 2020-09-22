@@ -35,11 +35,17 @@ namespace ProjetoFrontEnd
                 {
                     if (listamaterias.Contains(txt_materia.Text.ToUpper()))
                     {
+                        txt_listacurso.Text = "";
                         curso.Materia = txt_materia.Text.ToUpper();
                         curso.Situacao = txt_situacao.Text.ToUpper();
                         gravarCursosApi.Add(curso);
                         lbl_erro.Text = "";
                         lbl_success.Text = "Curso cadastrado com sucesso!";
+                        var listacurso = gravarCursosApi.Result();
+                        foreach(var item in listacurso)
+                        {
+                            txt_listacurso.Text += $"{item.Nome}{Environment.NewLine}";
+                        }
                     }
                     else
                     {
@@ -62,18 +68,24 @@ namespace ProjetoFrontEnd
 
         private void btn_excluir_Click(object sender, EventArgs e)
         {
+            txt_listacurso.Text = "";
             var nome = txt_nome.Text.ToUpper();
             var rgxnome = new Regex(@"([A-Z]|[a-z]|\s)*");
             if (rgxnome.IsMatch(nome))
             {
                 gravarCursosApi.Deletar(nome);
+                var listacurso = gravarCursosApi.Result();
+                foreach (var item in listacurso)
+                {
+                    txt_listacurso.Text += $"{item.Nome}{Environment.NewLine}";
+                }
             }
             
         }
 
         private void btn_voltar_Click(object sender, EventArgs e)
         {
-            this.Close();
+           this.Close();
         }
     }
 }

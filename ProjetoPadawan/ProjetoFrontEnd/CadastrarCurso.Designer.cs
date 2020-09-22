@@ -40,6 +40,7 @@
             this.btn_voltar = new System.Windows.Forms.Button();
             this.lbl_erro = new System.Windows.Forms.Label();
             this.lbl_success = new System.Windows.Forms.Label();
+            this.txt_listacurso = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -150,11 +151,20 @@
             this.lbl_success.Size = new System.Drawing.Size(0, 21);
             this.lbl_success.TabIndex = 6;
             // 
+            // txt_listacurso
+            // 
+            this.txt_listacurso.Location = new System.Drawing.Point(382, 111);
+            this.txt_listacurso.Multiline = true;
+            this.txt_listacurso.Name = "txt_listacurso";
+            this.txt_listacurso.Size = new System.Drawing.Size(266, 248);
+            this.txt_listacurso.TabIndex = 3;
+            // 
             // CadastrarCurso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 494);
+            this.ClientSize = new System.Drawing.Size(695, 494);
+            this.Controls.Add(this.txt_listacurso);
             this.Controls.Add(this.lbl_success);
             this.Controls.Add(this.lbl_erro);
             this.Controls.Add(this.btn_voltar);
@@ -188,5 +198,6 @@
         private System.Windows.Forms.Button btn_voltar;
         private System.Windows.Forms.Label lbl_erro;
         private System.Windows.Forms.Label lbl_success;
+        private System.Windows.Forms.TextBox txt_listacurso;
     }
 }
