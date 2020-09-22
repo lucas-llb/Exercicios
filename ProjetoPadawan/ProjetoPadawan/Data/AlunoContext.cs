@@ -12,7 +12,7 @@ namespace ProjetoPadawan.Data
     {
         public DbSet<Alunos> Aluno { get; set; }
         public DbSet<Cursos> Curso { get; set; }
-        public DbSet<Materias> Materias { get; set; }
+        public DbSet<Materias> Materia { get; set; }
         public DbSet<Notas> Notas { get; set; }
 
         public AlunoContext()
@@ -26,7 +26,7 @@ namespace ProjetoPadawan.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Data Source = NT-04780\\SQLEXPRESS; database = BancoBoletimAPI2; Trusted_Connection=True;MultipleActiveResultSets=True");
+            optionsBuilder.UseSqlServer("Data Source = NT-04780\\SQLEXPRESS; database = BancoBoletimAPI5; Trusted_Connection=True;MultipleActiveResultSets=True");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -54,7 +54,7 @@ namespace ProjetoPadawan.Data
             builder.Entity<Cursos>().Property(q => q.Nome).IsRequired();
             builder.Entity<Cursos>().Property(q => q.Situacao).IsRequired();
             builder.Entity<Cursos>().HasMany(q => q.Alunos).WithOne(q=>q.Curso);
-            builder.Entity<Cursos>().HasMany(q => q.CursoMateria).WithOne(q => q.Cursos);
+            builder.Entity<Cursos>().HasMany(q => q.CursoMateria).WithOne(q => q.Curso);
         }
         public void ModelBuilderMaterias(ModelBuilder builder)
         {
@@ -70,13 +70,13 @@ namespace ProjetoPadawan.Data
         {
             builder.Entity<Notas>().HasKey(q => q.Id);
             builder.Entity<Notas>().Property(q => q.Nota).IsRequired();
-            builder.Entity<Notas>().HasOne(q => q.Aluno).WithMany().HasForeignKey(q => q.IdAluno);
-            builder.Entity<Notas>().HasOne(q => q.Materia).WithMany().HasForeignKey(q => q.IdMateria);
-
+            //builder.Entity<Notas>().HasOne(q => q.Aluno).WithMany().HasForeignKey(q => q.AlunoId);
+            //builder.Entity<Notas>().HasOne(q => q.Materia).WithMany().HasForeignKey(q => q.MateriaId);
+            //builder.Entity<Notas>().ToTable("Notas123");
         }
         public void ModelBuilderCursoMateria(ModelBuilder builder)
         {
-            builder.Entity<CursosMaterias>().HasKey(e => new { e.CursoID, e.MateriaID });
+            builder.Entity<CursosMaterias>().HasKey(e => new { e.CursoId, e.MateriaId });
         }
     }
 }

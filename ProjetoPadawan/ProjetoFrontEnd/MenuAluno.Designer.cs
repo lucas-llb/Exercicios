@@ -54,7 +54,7 @@
             this.btn_cadCurso.Name = "btn_cadCurso";
             this.btn_cadCurso.Size = new System.Drawing.Size(279, 46);
             this.btn_cadCurso.TabIndex = 1;
-            this.btn_cadCurso.Text = "Cadastro de curso";
+            this.btn_cadCurso.Text = "Cadastro de Curso";
             this.btn_cadCurso.UseVisualStyleBackColor = true;
             this.btn_cadCurso.Click += new System.EventHandler(this.btn_cadCurso_Click);
             // 
@@ -87,7 +87,7 @@
             this.btn_cadNota.Name = "btn_cadNota";
             this.btn_cadNota.Size = new System.Drawing.Size(279, 46);
             this.btn_cadNota.TabIndex = 1;
-            this.btn_cadNota.Text = "Cadastro de nota";
+            this.btn_cadNota.Text = "Cadastro de Nota";
             this.btn_cadNota.UseVisualStyleBackColor = true;
             // 
             // btn_ListNota

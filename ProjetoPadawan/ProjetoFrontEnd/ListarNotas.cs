@@ -14,20 +14,22 @@ namespace ProjetoFrontEnd
     public partial class ListarNotas : Form
     {
         private readonly GravarNotasApi gravaNotasDB;
+        private readonly GravarAlunoApi gravarAlunoApi;
         public ListarNotas()
         {
             InitializeComponent();
             gravaNotasDB = new GravarNotasApi();
+            gravarAlunoApi = new GravarAlunoApi();
         }
 
         private void btn_listar_Click(object sender, EventArgs e)
         {
-            var cpf = txt_aluno.Text;
+            var aluno = box_aluno.Text;
             txt_lista.Text = "";
-            var rgxcpf = new Regex(@"^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$");
-            if (rgxcpf.IsMatch(cpf))
+            //var rgxcpf = new Regex(@"^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$");
+            if (box_aluno.SelectedItem != null)
             {
-                var listanotaas = gravaNotasDB.Result().Where(q => q.Aluno.Cpf == cpf);
+                var listanotaas = gravaNotasDB.Result().Where(q => q.Aluno.Nome == aluno);
                 foreach (var item in listanotaas)
                 {
                     txt_lista.Text += $"ID: {item.Id}\tMatéria: {item.Materia.Nome}\tNota: {item.Nota}{Environment.NewLine}";
@@ -35,7 +37,7 @@ namespace ProjetoFrontEnd
             }
             else
             {
-                txt_lista.Text = "O CPF não é válido.";
+                MessageBox.Show("O CPF não é válido.");
             }
 
         }
@@ -43,6 +45,15 @@ namespace ProjetoFrontEnd
         private void btn_voltar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ListarNotas_Load(object sender, EventArgs e)
+        {
+            box_aluno.Items.Clear();
+            foreach(var item in gravarAlunoApi.Result())
+            {
+                box_aluno.Items.Add(item);
+            }
         }
     }
 }

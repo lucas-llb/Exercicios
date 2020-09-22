@@ -33,14 +33,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txt_nome = new System.Windows.Forms.TextBox();
-            this.txt_materia = new System.Windows.Forms.TextBox();
-            this.txt_situacao = new System.Windows.Forms.TextBox();
             this.btn_salvar = new System.Windows.Forms.Button();
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_voltar = new System.Windows.Forms.Button();
             this.lbl_erro = new System.Windows.Forms.Label();
             this.lbl_success = new System.Windows.Forms.Label();
             this.txt_listacurso = new System.Windows.Forms.TextBox();
+            this.box_materias = new System.Windows.Forms.ComboBox();
+            this.box_situacao = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -86,20 +86,6 @@
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(237, 23);
             this.txt_nome.TabIndex = 3;
-            // 
-            // txt_materia
-            // 
-            this.txt_materia.Location = new System.Drawing.Point(110, 146);
-            this.txt_materia.Name = "txt_materia";
-            this.txt_materia.Size = new System.Drawing.Size(237, 23);
-            this.txt_materia.TabIndex = 3;
-            // 
-            // txt_situacao
-            // 
-            this.txt_situacao.Location = new System.Drawing.Point(110, 177);
-            this.txt_situacao.Name = "txt_situacao";
-            this.txt_situacao.Size = new System.Drawing.Size(237, 23);
-            this.txt_situacao.TabIndex = 3;
             // 
             // btn_salvar
             // 
@@ -159,19 +145,38 @@
             this.txt_listacurso.Size = new System.Drawing.Size(266, 248);
             this.txt_listacurso.TabIndex = 3;
             // 
+            // box_materias
+            // 
+            this.box_materias.FormattingEnabled = true;
+            this.box_materias.Location = new System.Drawing.Point(110, 146);
+            this.box_materias.Name = "box_materias";
+            this.box_materias.Size = new System.Drawing.Size(237, 23);
+            this.box_materias.TabIndex = 7;
+            // 
+            // box_situacao
+            // 
+            this.box_situacao.FormattingEnabled = true;
+            this.box_situacao.Items.AddRange(new object[] {
+            "ATIVO",
+            "INATIVO"});
+            this.box_situacao.Location = new System.Drawing.Point(110, 177);
+            this.box_situacao.Name = "box_situacao";
+            this.box_situacao.Size = new System.Drawing.Size(237, 23);
+            this.box_situacao.TabIndex = 7;
+            // 
             // CadastrarCurso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 494);
+            this.Controls.Add(this.box_situacao);
+            this.Controls.Add(this.box_materias);
             this.Controls.Add(this.txt_listacurso);
             this.Controls.Add(this.lbl_success);
             this.Controls.Add(this.lbl_erro);
             this.Controls.Add(this.btn_voltar);
             this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.btn_salvar);
-            this.Controls.Add(this.txt_situacao);
-            this.Controls.Add(this.txt_materia);
             this.Controls.Add(this.txt_nome);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -179,6 +184,7 @@
             this.Controls.Add(this.label1);
             this.Name = "CadastrarCurso";
             this.Text = "CadastrarCurso";
+            this.Load += new System.EventHandler(this.CadastrarCurso_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,13 +197,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txt_nome;
-        private System.Windows.Forms.TextBox txt_materia;
-        private System.Windows.Forms.TextBox txt_situacao;
         private System.Windows.Forms.Button btn_salvar;
         private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Button btn_voltar;
         private System.Windows.Forms.Label lbl_erro;
         private System.Windows.Forms.Label lbl_success;
         private System.Windows.Forms.TextBox txt_listacurso;
+        private System.Windows.Forms.ComboBox box_materias;
+        private System.Windows.Forms.ComboBox box_situacao;
     }
 }

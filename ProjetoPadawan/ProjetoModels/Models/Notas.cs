@@ -9,8 +9,8 @@ namespace ProjetoPadawan.Models
     {
         public int Id { get; set; }
         public int Nota { get; set; }
-        public int IdAluno { get; set; }
-        public int IdMateria { get; set; }
+        public int AlunoId { get; set; }
+        public int MateriaId { get; set; }
 
         public virtual Materias Materia { get; set; }
         public virtual Alunos Aluno { get; set; }

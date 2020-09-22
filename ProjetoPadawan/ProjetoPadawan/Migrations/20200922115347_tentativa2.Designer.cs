@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetoPadawan.Data;
 
 namespace ProjetoPadawan.Migrations
 {
     [DbContext(typeof(AlunoContext))]
-    partial class AlunoContextModelSnapshot : ModelSnapshot
+    [Migration("20200922115347_tentativa2")]
+    partial class tentativa2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,15 +23,20 @@ namespace ProjetoPadawan.Migrations
 
             modelBuilder.Entity("ProjetoModels.Models.CursosMaterias", b =>
                 {
-                    b.Property<int>("CursoId")
+                    b.Property<int>("CursoID")
                         .HasColumnType("int");
 
-                    b.Property<int>("MateriaId")
+                    b.Property<int>("MateriaID")
                         .HasColumnType("int");
 
-                    b.HasKey("CursoId", "MateriaId");
+                    b.Property<int?>("CursosId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("MateriaId");
+                    b.HasKey("CursoID", "MateriaID");
+
+                    b.HasIndex("CursosId");
+
+                    b.HasIndex("MateriaID");
 
                     b.ToTable("CursosMaterias");
                 });
@@ -44,6 +51,9 @@ namespace ProjetoPadawan.Migrations
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CursosId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("datetime2");
@@ -60,6 +70,8 @@ namespace ProjetoPadawan.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CursosId");
 
                     b.HasIndex("IdCurso");
 
@@ -113,7 +125,7 @@ namespace ProjetoPadawan.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Materia");
+                    b.ToTable("Materias");
                 });
 
             modelBuilder.Entity("ProjetoPadawan.Models.Notas", b =>
@@ -123,10 +135,16 @@ namespace ProjetoPadawan.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AlunoId")
+                    b.Property<int?>("AlunosId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MateriaId")
+                    b.Property<int>("IdAluno")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdMateria")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MateriasId")
                         .HasColumnType("int");
 
                     b.Property<int>("Nota")
@@ -134,32 +152,38 @@ namespace ProjetoPadawan.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AlunoId");
+                    b.HasIndex("AlunosId");
 
-                    b.HasIndex("MateriaId");
+                    b.HasIndex("IdAluno");
+
+                    b.HasIndex("IdMateria");
+
+                    b.HasIndex("MateriasId");
 
                     b.ToTable("Notas");
                 });
 
             modelBuilder.Entity("ProjetoModels.Models.CursosMaterias", b =>
                 {
-                    b.HasOne("ProjetoPadawan.Models.Cursos", "Curso")
+                    b.HasOne("ProjetoPadawan.Models.Cursos", "Cursos")
                         .WithMany("CursoMateria")
-                        .HasForeignKey("CursoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CursosId");
 
                     b.HasOne("ProjetoPadawan.Models.Materias", "Materia")
                         .WithMany("CursosMaterias")
-                        .HasForeignKey("MateriaId")
+                        .HasForeignKey("MateriaID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("ProjetoPadawan.Models.Alunos", b =>
                 {
-                    b.HasOne("ProjetoPadawan.Models.Cursos", "Curso")
+                    b.HasOne("ProjetoPadawan.Models.Cursos", null)
                         .WithMany("Alunos")
+                        .HasForeignKey("CursosId");
+
+                    b.HasOne("ProjetoPadawan.Models.Cursos", "Curso")
+                        .WithMany()
                         .HasForeignKey("IdCurso")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -167,13 +191,25 @@ namespace ProjetoPadawan.Migrations
 
             modelBuilder.Entity("ProjetoPadawan.Models.Notas", b =>
                 {
-                    b.HasOne("ProjetoPadawan.Models.Alunos", "Aluno")
+                    b.HasOne("ProjetoPadawan.Models.Alunos", null)
                         .WithMany("Notas")
-                        .HasForeignKey("AlunoId");
+                        .HasForeignKey("AlunosId");
+
+                    b.HasOne("ProjetoPadawan.Models.Alunos", "Aluno")
+                        .WithMany()
+                        .HasForeignKey("IdAluno")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ProjetoPadawan.Models.Materias", "Materia")
+                        .WithMany()
+                        .HasForeignKey("IdMateria")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjetoPadawan.Models.Materias", null)
                         .WithMany("Nota")
-                        .HasForeignKey("MateriaId");
+                        .HasForeignKey("MateriasId");
                 });
 #pragma warning restore 612, 618
         }

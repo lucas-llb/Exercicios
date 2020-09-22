@@ -31,16 +31,16 @@ namespace ProjetoFrontEnd
             if (rgxnome.IsMatch(txt_nome.Text))
             {
                 curso.Nome = txt_nome.Text.ToUpper();
-                if(txt_situacao.Text.ToUpper() == "ATIVO" || txt_situacao.Text.ToUpper() == "INATIVO")
+                if(box_situacao.SelectedItem != null)
                 {
-                    if (listamaterias.Contains(txt_materia.Text.ToUpper()))
+                    if (box_materias.SelectedItem != null)
                     {
                         txt_listacurso.Text = "";
-                        curso.Materia = txt_materia.Text.ToUpper();
-                        curso.Situacao = txt_situacao.Text.ToUpper();
+                        curso.Materia = box_materias.Text.ToUpper();
+                        curso.Situacao = box_situacao.Text;
                         gravarCursosApi.Add(curso);
                         lbl_erro.Text = "";
-                        lbl_success.Text = "Curso cadastrado com sucesso!";
+                        MessageBox.Show("Curso cadastrado com sucesso!");
                         var listacurso = gravarCursosApi.Result();
                         foreach(var item in listacurso)
                         {
@@ -49,18 +49,19 @@ namespace ProjetoFrontEnd
                     }
                     else
                     {
-                        lbl_erro.Text = "Materia não encontrada!";
+                        MessageBox.Show("Materia não encontrada!");
                     }
 
                 }
                 else
                 {
-                    lbl_erro.Text = "Por favor digite apenas ATIVO ou INATIVO!";
+                    MessageBox.Show("Por favor digite apenas ATIVO ou INATIVO!");
                 }
             }
             else
             {
-                lbl_erro.Text = "O campo Nome aceita apenas letras!";
+                MessageBox.Show("O campo Nome aceita apenas letras!");
+
             }
 
 
@@ -86,6 +87,16 @@ namespace ProjetoFrontEnd
         private void btn_voltar_Click(object sender, EventArgs e)
         {
            this.Close();
+        }
+
+        private void CadastrarCurso_Load(object sender, EventArgs e)
+        {
+            box_materias.Items.Clear();
+            foreach(var item in gravarMateriasApi.Result())
+            {
+                box_materias.Items.Add(item);
+            }
+
         }
     }
 }

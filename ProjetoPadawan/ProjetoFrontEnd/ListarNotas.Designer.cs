@@ -32,10 +32,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label2 = new System.Windows.Forms.Label();
-            this.txt_aluno = new System.Windows.Forms.TextBox();
             this.txt_lista = new System.Windows.Forms.TextBox();
             this.btn_listar = new System.Windows.Forms.Button();
             this.btn_voltar = new System.Windows.Forms.Button();
+            this.box_aluno = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -59,16 +59,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(80, 95);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 15);
+            this.label2.Size = new System.Drawing.Size(45, 15);
             this.label2.TabIndex = 1;
-            this.label2.Text = "CPF: ";
-            // 
-            // txt_aluno
-            // 
-            this.txt_aluno.Location = new System.Drawing.Point(132, 92);
-            this.txt_aluno.Name = "txt_aluno";
-            this.txt_aluno.Size = new System.Drawing.Size(328, 23);
-            this.txt_aluno.TabIndex = 2;
+            this.label2.Text = "Aluno: ";
             // 
             // txt_lista
             // 
@@ -98,19 +91,28 @@
             this.btn_voltar.UseVisualStyleBackColor = true;
             this.btn_voltar.Click += new System.EventHandler(this.btn_voltar_Click);
             // 
+            // box_aluno
+            // 
+            this.box_aluno.FormattingEnabled = true;
+            this.box_aluno.Location = new System.Drawing.Point(132, 92);
+            this.box_aluno.Name = "box_aluno";
+            this.box_aluno.Size = new System.Drawing.Size(328, 23);
+            this.box_aluno.TabIndex = 4;
+            // 
             // ListarNotas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(592, 540);
+            this.Controls.Add(this.box_aluno);
             this.Controls.Add(this.btn_voltar);
             this.Controls.Add(this.btn_listar);
             this.Controls.Add(this.txt_lista);
-            this.Controls.Add(this.txt_aluno);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "ListarNotas";
             this.Text = "ListarNotas";
+            this.Load += new System.EventHandler(this.ListarNotas_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,9 +123,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txt_aluno;
         private System.Windows.Forms.TextBox txt_lista;
         private System.Windows.Forms.Button btn_listar;
         private System.Windows.Forms.Button btn_voltar;
+        private System.Windows.Forms.ComboBox box_aluno;
     }
 }

@@ -34,7 +34,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txt_descricao = new System.Windows.Forms.TextBox();
             this.txt_datacadastro = new System.Windows.Forms.TextBox();
-            this.txt_situacao = new System.Windows.Forms.TextBox();
             this.btn_gravar = new System.Windows.Forms.Button();
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_voltar = new System.Windows.Forms.Button();
@@ -43,6 +42,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txt_nome = new System.Windows.Forms.TextBox();
             this.txt_listarmateria = new System.Windows.Forms.TextBox();
+            this.box_situacao = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -95,13 +95,6 @@
             this.txt_datacadastro.Name = "txt_datacadastro";
             this.txt_datacadastro.Size = new System.Drawing.Size(223, 23);
             this.txt_datacadastro.TabIndex = 2;
-            // 
-            // txt_situacao
-            // 
-            this.txt_situacao.Location = new System.Drawing.Point(158, 187);
-            this.txt_situacao.Name = "txt_situacao";
-            this.txt_situacao.Size = new System.Drawing.Size(223, 23);
-            this.txt_situacao.TabIndex = 2;
             // 
             // btn_gravar
             // 
@@ -177,11 +170,23 @@
             this.txt_listarmateria.Size = new System.Drawing.Size(265, 257);
             this.txt_listarmateria.TabIndex = 2;
             // 
+            // box_situacao
+            // 
+            this.box_situacao.FormattingEnabled = true;
+            this.box_situacao.Items.AddRange(new object[] {
+            "ATIVO",
+            "INATIVO"});
+            this.box_situacao.Location = new System.Drawing.Point(158, 187);
+            this.box_situacao.Name = "box_situacao";
+            this.box_situacao.Size = new System.Drawing.Size(223, 23);
+            this.box_situacao.TabIndex = 7;
+            // 
             // CadastroMateria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(757, 484);
+            this.Controls.Add(this.box_situacao);
             this.Controls.Add(this.txt_listarmateria);
             this.Controls.Add(this.txt_nome);
             this.Controls.Add(this.label5);
@@ -190,7 +195,6 @@
             this.Controls.Add(this.btn_voltar);
             this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.btn_gravar);
-            this.Controls.Add(this.txt_situacao);
             this.Controls.Add(this.txt_datacadastro);
             this.Controls.Add(this.txt_descricao);
             this.Controls.Add(this.label4);
@@ -212,7 +216,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txt_descricao;
         private System.Windows.Forms.TextBox txt_datacadastro;
-        private System.Windows.Forms.TextBox txt_situacao;
         private System.Windows.Forms.Button btn_gravar;
         private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Button btn_voltar;
@@ -221,5 +224,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txt_nome;
         private System.Windows.Forms.TextBox txt_listarmateria;
+        private System.Windows.Forms.ComboBox box_situacao;
     }
 }

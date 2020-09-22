@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetoPadawan.Data;
 
 namespace ProjetoPadawan.Migrations
 {
     [DbContext(typeof(AlunoContext))]
-    partial class AlunoContextModelSnapshot : ModelSnapshot
+    [Migration("20200922133515_banco5")]
+    partial class banco5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +29,12 @@ namespace ProjetoPadawan.Migrations
                     b.Property<int>("MateriaId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CursosId")
+                        .HasColumnType("int");
+
                     b.HasKey("CursoId", "MateriaId");
+
+                    b.HasIndex("CursosId");
 
                     b.HasIndex("MateriaId");
 
@@ -113,7 +120,7 @@ namespace ProjetoPadawan.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Materia");
+                    b.ToTable("Materias");
                 });
 
             modelBuilder.Entity("ProjetoPadawan.Models.Notas", b =>
@@ -123,10 +130,16 @@ namespace ProjetoPadawan.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AlunoId")
+                    b.Property<int>("AlunoId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("MateriaId")
+                    b.Property<int?>("AlunosId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MateriaId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MateriasId")
                         .HasColumnType("int");
 
                     b.Property<int>("Nota")
@@ -136,18 +149,20 @@ namespace ProjetoPadawan.Migrations
 
                     b.HasIndex("AlunoId");
 
+                    b.HasIndex("AlunosId");
+
                     b.HasIndex("MateriaId");
+
+                    b.HasIndex("MateriasId");
 
                     b.ToTable("Notas");
                 });
 
             modelBuilder.Entity("ProjetoModels.Models.CursosMaterias", b =>
                 {
-                    b.HasOne("ProjetoPadawan.Models.Cursos", "Curso")
+                    b.HasOne("ProjetoPadawan.Models.Cursos", "Cursos")
                         .WithMany("CursoMateria")
-                        .HasForeignKey("CursoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CursosId");
 
                     b.HasOne("ProjetoPadawan.Models.Materias", "Materia")
                         .WithMany("CursosMaterias")
@@ -168,12 +183,24 @@ namespace ProjetoPadawan.Migrations
             modelBuilder.Entity("ProjetoPadawan.Models.Notas", b =>
                 {
                     b.HasOne("ProjetoPadawan.Models.Alunos", "Aluno")
+                        .WithMany()
+                        .HasForeignKey("AlunoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjetoPadawan.Models.Alunos", null)
                         .WithMany("Notas")
-                        .HasForeignKey("AlunoId");
+                        .HasForeignKey("AlunosId");
 
                     b.HasOne("ProjetoPadawan.Models.Materias", "Materia")
+                        .WithMany()
+                        .HasForeignKey("MateriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjetoPadawan.Models.Materias", null)
                         .WithMany("Nota")
-                        .HasForeignKey("MateriaId");
+                        .HasForeignKey("MateriasId");
                 });
 #pragma warning restore 612, 618
         }

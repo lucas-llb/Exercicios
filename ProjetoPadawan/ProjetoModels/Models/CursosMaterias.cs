@@ -7,9 +7,9 @@ namespace ProjetoModels.Models
 {
     public class CursosMaterias
     {
-        public int CursoID { get; set; }
-        public int MateriaID { get; set; }
-        public virtual Cursos Cursos { get; set; }
+        public int CursoId { get; set; }
+        public int MateriaId { get; set; }
+        public virtual Cursos Curso { get; set; }
         public virtual Materias Materia { get; set; }
 
         //public CursosMaterias()

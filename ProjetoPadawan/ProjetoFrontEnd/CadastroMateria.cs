@@ -29,13 +29,13 @@ namespace ProjetoFrontEnd
                     if (rgxdescricao.IsMatch(txt_descricao.Text))
                     {
                         materias.Descricao = txt_descricao.Text;
-                        if (txt_situacao.Text.ToUpper() == "ATIVO" || txt_situacao.Text.ToUpper() == "INATIVO")
+                        if (box_situacao.SelectedItem != null)
                         {
                             txt_listarmateria.Text = "";
-                            materias.Situacao = txt_situacao.Text.ToUpper();
+                            materias.Situacao = box_situacao.Text;
                             gravarMateriasDB.Add(materias);
                             lbl_erro.Text = "";
-                            lbl_success.Text = "Matéria salva com sucesso!";
+                            MessageBox.Show("Matéria salva com sucesso!");
                             var listarmateria = gravarMateriasDB.Result();
                             foreach(var item in listarmateria)
                             {
@@ -44,24 +44,24 @@ namespace ProjetoFrontEnd
                         }
                         else
                         {
-                            lbl_erro.Text = "Por favor digite apenas ATIVO ou INATIVO!";
+                            MessageBox.Show("Por favor, entre com a situação!");
                         }
                         
                     }
                     else
                     {
-                        lbl_erro.Text = "Apanas letras são permitidas na descrição!";
+                        MessageBox.Show("Apanas letras são permitidas na descrição!");
                     }
 
                 }
                 else
                 {
-                    lbl_erro.Text = "Informe uma data válida!";
+                    MessageBox.Show("Informe uma data válida!");
                 }
             }
             else
             {
-                lbl_erro.Text = "O campo Nome deve conter apenas letras!";
+                MessageBox.Show("O campo Nome deve conter apenas letras!");
             }
 
         }

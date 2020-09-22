@@ -22,5 +22,10 @@ namespace ProjetoPadawan.Models
             //Curso = new HashSet<Cursos>();
             CursosMaterias = new HashSet<CursosMaterias>();
         }
+
+        public override string ToString()
+        {
+            return this.Nome;
+        }
     }
 }

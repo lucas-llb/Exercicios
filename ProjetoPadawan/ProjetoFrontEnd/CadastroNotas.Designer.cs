@@ -32,8 +32,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txt_aluno = new System.Windows.Forms.TextBox();
-            this.txt_materia = new System.Windows.Forms.TextBox();
             this.txt_nota = new System.Windows.Forms.TextBox();
             this.btn_salvar = new System.Windows.Forms.Button();
             this.btn_voltar = new System.Windows.Forms.Button();
@@ -43,6 +41,8 @@
             this.txt_id = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txt_listarnota = new System.Windows.Forms.TextBox();
+            this.box_materias = new System.Windows.Forms.ComboBox();
+            this.box_aluno = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -81,20 +81,6 @@
             this.label4.Size = new System.Drawing.Size(39, 15);
             this.label4.TabIndex = 3;
             this.label4.Text = "Nota: ";
-            // 
-            // txt_aluno
-            // 
-            this.txt_aluno.Location = new System.Drawing.Point(107, 103);
-            this.txt_aluno.Name = "txt_aluno";
-            this.txt_aluno.Size = new System.Drawing.Size(247, 23);
-            this.txt_aluno.TabIndex = 4;
-            // 
-            // txt_materia
-            // 
-            this.txt_materia.Location = new System.Drawing.Point(107, 143);
-            this.txt_materia.Name = "txt_materia";
-            this.txt_materia.Size = new System.Drawing.Size(247, 23);
-            this.txt_materia.TabIndex = 4;
             // 
             // txt_nota
             // 
@@ -177,11 +163,29 @@
             this.txt_listarnota.Size = new System.Drawing.Size(379, 205);
             this.txt_listarnota.TabIndex = 4;
             // 
+            // box_materias
+            // 
+            this.box_materias.FormattingEnabled = true;
+            this.box_materias.Location = new System.Drawing.Point(107, 143);
+            this.box_materias.Name = "box_materias";
+            this.box_materias.Size = new System.Drawing.Size(247, 23);
+            this.box_materias.TabIndex = 9;
+            // 
+            // box_aluno
+            // 
+            this.box_aluno.FormattingEnabled = true;
+            this.box_aluno.Location = new System.Drawing.Point(107, 103);
+            this.box_aluno.Name = "box_aluno";
+            this.box_aluno.Size = new System.Drawing.Size(247, 23);
+            this.box_aluno.TabIndex = 9;
+            // 
             // CadastroNotas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(832, 450);
+            this.Controls.Add(this.box_aluno);
+            this.Controls.Add(this.box_materias);
             this.Controls.Add(this.txt_listarnota);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txt_id);
@@ -191,14 +195,13 @@
             this.Controls.Add(this.btn_voltar);
             this.Controls.Add(this.btn_salvar);
             this.Controls.Add(this.txt_nota);
-            this.Controls.Add(this.txt_materia);
-            this.Controls.Add(this.txt_aluno);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "CadastroNotas";
             this.Text = "CadastroNotas";
+            this.Load += new System.EventHandler(this.CadastroNotas_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,8 +213,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txt_aluno;
-        private System.Windows.Forms.TextBox txt_materia;
         private System.Windows.Forms.TextBox txt_nota;
         private System.Windows.Forms.Button btn_salvar;
         private System.Windows.Forms.Button btn_voltar;
@@ -221,5 +222,7 @@
         private System.Windows.Forms.TextBox txt_id;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txt_listarnota;
+        private System.Windows.Forms.ComboBox box_materias;
+        private System.Windows.Forms.ComboBox box_aluno;
     }
 }

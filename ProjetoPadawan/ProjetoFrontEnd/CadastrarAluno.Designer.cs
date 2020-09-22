@@ -38,13 +38,13 @@
             this.txt_sobrenome = new System.Windows.Forms.TextBox();
             this.txt_datanasc = new System.Windows.Forms.TextBox();
             this.txt_cpf = new System.Windows.Forms.TextBox();
-            this.txt_curso = new System.Windows.Forms.TextBox();
             this.btn_gravar = new System.Windows.Forms.Button();
             this.btn_voltar = new System.Windows.Forms.Button();
             this.btn_excluir = new System.Windows.Forms.Button();
             this.lbl_erro = new System.Windows.Forms.Label();
             this.lbl_succes = new System.Windows.Forms.Label();
             this.txt_listaaluno = new System.Windows.Forms.TextBox();
+            this.box_curso = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -130,13 +130,6 @@
             this.txt_cpf.Size = new System.Drawing.Size(249, 23);
             this.txt_cpf.TabIndex = 2;
             // 
-            // txt_curso
-            // 
-            this.txt_curso.Location = new System.Drawing.Point(148, 251);
-            this.txt_curso.Name = "txt_curso";
-            this.txt_curso.Size = new System.Drawing.Size(249, 23);
-            this.txt_curso.TabIndex = 2;
-            // 
             // btn_gravar
             // 
             this.btn_gravar.Location = new System.Drawing.Point(179, 324);
@@ -195,18 +188,26 @@
             this.txt_listaaluno.Size = new System.Drawing.Size(275, 263);
             this.txt_listaaluno.TabIndex = 7;
             // 
+            // box_curso
+            // 
+            this.box_curso.FormattingEnabled = true;
+            this.box_curso.Location = new System.Drawing.Point(148, 251);
+            this.box_curso.Name = "box_curso";
+            this.box_curso.Size = new System.Drawing.Size(249, 23);
+            this.box_curso.TabIndex = 8;
+            // 
             // CadastrarAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(763, 511);
+            this.Controls.Add(this.box_curso);
             this.Controls.Add(this.txt_listaaluno);
             this.Controls.Add(this.lbl_succes);
             this.Controls.Add(this.lbl_erro);
             this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.btn_voltar);
             this.Controls.Add(this.btn_gravar);
-            this.Controls.Add(this.txt_curso);
             this.Controls.Add(this.txt_cpf);
             this.Controls.Add(this.txt_datanasc);
             this.Controls.Add(this.txt_sobrenome);
@@ -219,6 +220,7 @@
             this.Controls.Add(this.label1);
             this.Name = "CadastrarAluno";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.CadastrarAluno_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,12 +238,12 @@
         private System.Windows.Forms.TextBox txt_sobrenome;
         private System.Windows.Forms.TextBox txt_datanasc;
         private System.Windows.Forms.TextBox txt_cpf;
-        private System.Windows.Forms.TextBox txt_curso;
         private System.Windows.Forms.Button btn_gravar;
         private System.Windows.Forms.Button btn_voltar;
         private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Label lbl_erro;
         private System.Windows.Forms.Label lbl_succes;
         private System.Windows.Forms.TextBox txt_listaaluno;
+        private System.Windows.Forms.ComboBox box_curso;
     }
 }

@@ -21,5 +21,10 @@ namespace ProjetoPadawan.Models
             //Materias = new HashSet<Materias>();
             Alunos = new HashSet<Alunos>();
         }
+
+        public override string ToString()
+        {
+            return this.Nome;
+        }
     }
 }

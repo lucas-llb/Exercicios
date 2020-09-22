@@ -15,5 +15,11 @@ namespace ProjetoPadawan.Models
         public int IdCurso { get; set; }
         public virtual Cursos Curso { get; set; }
         public virtual ICollection<Notas> Notas { get; set; }
+
+        public override string ToString()
+        {
+            return this.Nome;
+        }
     }
+    
 }
