@@ -41,6 +41,9 @@
             this.txt_listacurso = new System.Windows.Forms.TextBox();
             this.box_materias = new System.Windows.Forms.ComboBox();
             this.box_situacao = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.box_excluir = new System.Windows.Forms.ComboBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -99,7 +102,7 @@
             // 
             // btn_excluir
             // 
-            this.btn_excluir.Location = new System.Drawing.Point(327, 392);
+            this.btn_excluir.Location = new System.Drawing.Point(27, 32);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(148, 54);
             this.btn_excluir.TabIndex = 4;
@@ -164,18 +167,37 @@
             this.box_situacao.Size = new System.Drawing.Size(237, 23);
             this.box_situacao.TabIndex = 7;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.box_excluir);
+            this.groupBox1.Controls.Add(this.btn_excluir);
+            this.groupBox1.Location = new System.Drawing.Point(300, 360);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(347, 96);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Excluir";
+            // 
+            // box_excluir
+            // 
+            this.box_excluir.FormattingEnabled = true;
+            this.box_excluir.Location = new System.Drawing.Point(185, 39);
+            this.box_excluir.Name = "box_excluir";
+            this.box_excluir.Size = new System.Drawing.Size(161, 23);
+            this.box_excluir.TabIndex = 5;
+            // 
             // CadastrarCurso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 494);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.box_situacao);
             this.Controls.Add(this.box_materias);
             this.Controls.Add(this.txt_listacurso);
             this.Controls.Add(this.lbl_success);
             this.Controls.Add(this.lbl_erro);
             this.Controls.Add(this.btn_voltar);
-            this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.btn_salvar);
             this.Controls.Add(this.txt_nome);
             this.Controls.Add(this.label4);
@@ -185,6 +207,7 @@
             this.Name = "CadastrarCurso";
             this.Text = "CadastrarCurso";
             this.Load += new System.EventHandler(this.CadastrarCurso_Load);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,5 +228,7 @@
         private System.Windows.Forms.TextBox txt_listacurso;
         private System.Windows.Forms.ComboBox box_materias;
         private System.Windows.Forms.ComboBox box_situacao;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox box_excluir;
     }
 }

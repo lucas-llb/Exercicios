@@ -15,13 +15,10 @@ namespace ProjetoPadawan.Controllers
         [Route("listarnotas")]
         public ActionResult Get(string nome)
         {
-            var listarNotas = new List<Notas>();
-            var listanome = db.Notas.Where(q=>q.Aluno.Nome == nome).ToList();
-            foreach (var item in listanome )
-            {
-                listarNotas.Add(item);
-            }
-            return Ok(listarNotas);
+           // var listarNotas = new List<Notas>();
+            var listanotas = db.Notas.ToList();
+            
+            return Ok(listanotas);
         }
 
         [HttpPost]

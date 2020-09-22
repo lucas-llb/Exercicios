@@ -45,6 +45,9 @@
             this.lbl_succes = new System.Windows.Forms.Label();
             this.txt_listaaluno = new System.Windows.Forms.TextBox();
             this.box_curso = new System.Windows.Forms.ComboBox();
+            this.box_excluir = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -152,7 +155,7 @@
             // 
             // btn_excluir
             // 
-            this.btn_excluir.Location = new System.Drawing.Point(398, 436);
+            this.btn_excluir.Location = new System.Drawing.Point(25, 53);
             this.btn_excluir.Name = "btn_excluir";
             this.btn_excluir.Size = new System.Drawing.Size(122, 34);
             this.btn_excluir.TabIndex = 4;
@@ -196,16 +199,35 @@
             this.box_curso.Size = new System.Drawing.Size(249, 23);
             this.box_curso.TabIndex = 8;
             // 
+            // box_excluir
+            // 
+            this.box_excluir.FormattingEnabled = true;
+            this.box_excluir.Location = new System.Drawing.Point(171, 60);
+            this.box_excluir.Name = "box_excluir";
+            this.box_excluir.Size = new System.Drawing.Size(175, 23);
+            this.box_excluir.TabIndex = 9;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.box_excluir);
+            this.groupBox1.Controls.Add(this.btn_excluir);
+            this.groupBox1.Location = new System.Drawing.Point(393, 402);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(358, 97);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Excluir";
+            // 
             // CadastrarAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(763, 511);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.box_curso);
             this.Controls.Add(this.txt_listaaluno);
             this.Controls.Add(this.lbl_succes);
             this.Controls.Add(this.lbl_erro);
-            this.Controls.Add(this.btn_excluir);
             this.Controls.Add(this.btn_voltar);
             this.Controls.Add(this.btn_gravar);
             this.Controls.Add(this.txt_cpf);
@@ -221,6 +243,7 @@
             this.Name = "CadastrarAluno";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.CadastrarAluno_Load);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,5 +268,7 @@
         private System.Windows.Forms.Label lbl_succes;
         private System.Windows.Forms.TextBox txt_listaaluno;
         private System.Windows.Forms.ComboBox box_curso;
+        private System.Windows.Forms.ComboBox box_excluir;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

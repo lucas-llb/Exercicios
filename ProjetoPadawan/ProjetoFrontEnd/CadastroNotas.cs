@@ -97,6 +97,13 @@ namespace ProjetoFrontEnd
             {
                 box_aluno.Items.Add(item);
             }
+            var listarnota = gravarNotasApi.Result();
+            foreach (var item in listarnota)
+            {
+                var materia = gravarMateriasApi.Result().Find(q => q.Id == item.MateriaId);
+                var aluno = gravarAlunoApi.Result().Find(q => q.Id == item.AlunoId);
+                txt_listarnota.Text += $"Id:{item.Id}\tAluno:{aluno.Nome}\tMatéria:{materia.Nome}\tNota:{item.Nota}{Environment.NewLine}";
+            }
         }
     }
 }

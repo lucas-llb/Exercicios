@@ -69,17 +69,20 @@ namespace ProjetoFrontEnd
 
         private void btn_excluir_Click(object sender, EventArgs e)
         {
-            txt_listacurso.Text = "";
-            var nome = txt_nome.Text.ToUpper();
-            var rgxnome = new Regex(@"([A-Z]|[a-z]|\s)*");
-            if (rgxnome.IsMatch(nome))
+            
+            if (box_excluir.SelectedItem != null)
             {
+                var nome = box_excluir.Text;
                 gravarCursosApi.Deletar(nome);
                 var listacurso = gravarCursosApi.Result();
                 foreach (var item in listacurso)
                 {
                     txt_listacurso.Text += $"{item.Nome}{Environment.NewLine}";
                 }
+            }
+            else
+            {
+                MessageBox.Show("Selecione um curso para ser excluído!");
             }
             
         }
@@ -96,7 +99,11 @@ namespace ProjetoFrontEnd
             {
                 box_materias.Items.Add(item);
             }
-
+            box_excluir.Items.Clear();
+            foreach(var item in gravarCursosApi.Result())
+            {
+                box_excluir.Items.Add(item);
+            }
         }
     }
 }

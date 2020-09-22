@@ -37,7 +37,7 @@ namespace ProjetoFrontEnd
                             lbl_erro.Text = "";
                             MessageBox.Show("Matéria salva com sucesso!");
                             var listarmateria = gravarMateriasDB.Result();
-                            foreach(var item in listarmateria)
+                            foreach (var item in listarmateria)
                             {
                                 txt_listarmateria.Text += $"{item.Nome}{Environment.NewLine}";
                             }
@@ -46,7 +46,7 @@ namespace ProjetoFrontEnd
                         {
                             MessageBox.Show("Por favor, entre com a situação!");
                         }
-                        
+
                     }
                     else
                     {
@@ -68,19 +68,36 @@ namespace ProjetoFrontEnd
 
         private void btn_voltar_Click(object sender, EventArgs e)
         {
-           // MenuAdm menuadm = new MenuAdm();
-          // menuadm.Show();
+            // MenuAdm menuadm = new MenuAdm();
+            // menuadm.Show();
             this.Close();
         }
 
         private void btn_excluir_Click(object sender, EventArgs e)
         {
-            var nome = txt_nome.Text.ToUpper();
-            gravarMateriasDB.Deletar(nome);
-            var listarmateria = gravarMateriasDB.Result();
-            foreach (var item in listarmateria)
+            if(box_excluir.SelectedItem != null)
             {
-                txt_listarmateria.Text += $"{item.Nome}{Environment.NewLine}";
+                var nome = box_excluir.Text;
+                gravarMateriasDB.Deletar(nome);
+                var listarmateria = gravarMateriasDB.Result();
+                foreach (var item in listarmateria)
+                {
+                    txt_listarmateria.Text += $"{item.Nome}{Environment.NewLine}";
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma matéria para ser excluída!");
+            }
+
+        }
+
+        private void CadastroMateria_Load(object sender, EventArgs e)
+        {
+            box_excluir.Items.Clear();
+            foreach (var item in gravarMateriasDB.Result())
+            {
+                box_excluir.Items.Add(item);
             }
         }
     }

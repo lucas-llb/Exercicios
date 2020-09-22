@@ -93,18 +93,35 @@ namespace ProjetoFrontEnd
             var rgxcpf = new Regex(@"^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$");
             if(txt_cpf.Text is null)
             {
-               MessageBox.Show("Digite um cpf válido para deletar um aluno.");
+               MessageBox.Show("Confirme o CPF para excluir.");
             }
             else
             {
                 if (rgxcpf.IsMatch(txt_cpf.Text))
                 {
-                    gravarAlunosDB.Deletar(txt_cpf.Text);
-                    var listaaluno = gravarAlunosDB.Result();
-                    foreach (var item in listaaluno)
+                    if (box_excluir.SelectedItem != null)
                     {
-                        txt_listaaluno.Text += $"Aluno:{item.Nome}\tCPF:{item.Cpf}{Environment.NewLine}";
+                        var aluno = (Alunos)box_excluir.SelectedItem;
+                        if(aluno.Cpf == txt_cpf.Text)
+                        {
+                            gravarAlunosDB.Deletar(txt_cpf.Text);
+                            var listaaluno = gravarAlunosDB.Result();
+                            foreach (var item in listaaluno)
+                            {
+                                txt_listaaluno.Text += $"Aluno:{item.Nome}\tCPF:{item.Cpf}{Environment.NewLine}";
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("CPF e aluno não coincidem.");
+                        }
+
                     }
+                    else
+                    {
+                        MessageBox.Show("Selecione um aluno para excluir!");
+                    }
+                    
                 }
                 else
                 {
@@ -118,11 +135,16 @@ namespace ProjetoFrontEnd
         private void CadastrarAluno_Load(object sender, EventArgs e)
         {
             box_curso.Items.Clear();
+            box_excluir.Items.Clear();
             foreach(var item in gravarCursosApi.Result())
             {
                 box_curso.Items.Add(item);
             }
-
+            foreach(var item in gravarAlunosDB.Result())
+            {
+                box_excluir.Items.Add(item);
+                txt_listaaluno.Text += $"Aluno:{item.Nome}\tCPF:{item.Cpf}{Environment.NewLine}";
+            }
         }
     }
 }
