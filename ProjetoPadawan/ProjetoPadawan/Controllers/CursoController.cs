@@ -16,10 +16,14 @@ namespace ProjetoPadawan.Controllers
         public ActionResult Get()
         {
             var listacursos = new List<Cursos>();
-            foreach(var item in db.Curso)
+            using (db)
             {
-                listacursos.Add(item);
+                foreach (var item in db.Curso)
+                {
+                    listacursos.Add(item);
+                }
             }
+
             return Ok(listacursos);
 
         }
@@ -28,17 +32,23 @@ namespace ProjetoPadawan.Controllers
         [Route("cadastrarcurso")]
         public ActionResult Post(Cursos curso)
         {
-            db.Curso.Add(curso);
-            db.SaveChanges();
+            using (db)
+            {
+                db.Curso.Add(curso);
+                db.SaveChanges();
+            }
             return Ok("Curso adicionado com Sucesso!");
         }
         [HttpDelete]
         [Route("deletarcurso")]
         public ActionResult Delete(string nome)
         {
-            var deletado = db.Curso.FirstOrDefault(q => q.Nome == nome);
-            db.Curso.Remove(deletado);
-            db.SaveChanges();
+            using (db)
+            {
+                var deletado = db.Curso.FirstOrDefault(q => q.Nome == nome);
+                db.Curso.Remove(deletado);
+                db.SaveChanges();
+            }
             return Ok("Curso removido do sistema.");
         }
     }

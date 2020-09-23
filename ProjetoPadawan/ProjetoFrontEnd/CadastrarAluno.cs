@@ -28,7 +28,7 @@ namespace ProjetoFrontEnd
             var aluno = new Alunos();
             var rgxNome = new Regex(@"[a-z]|[A-Z]|\s");
             var rgxcpf = new Regex(@"^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$");
-            var rgx = new Regex(@"^((0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]((19)\d\d))|((0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-](20[01]{2}))|((0?[1])[\/\-](0?1)[\/\-](2002))"); 
+            var rgx = new Regex(@"^((0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]((19)\d\d))|((0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-](20[01]{2}))|((0?[1])[\/\-](0?1)[\/\-](2002))");
             if (txt_nome.Text != null && txt_sobrenome.Text != null && txt_datanasc != null && txt_cpf.Text != null)
             {
                 if (rgx.IsMatch(txt_datanasc.Text))
@@ -51,7 +51,9 @@ namespace ProjetoFrontEnd
                             var listaaluno = gravarAlunosDB.Result();
                             foreach (var item in listaaluno)
                             {
-                                txt_listaaluno.Text += $"Aluno:{item.Nome}\tCPF:{item.Cpf}{Environment.NewLine}";
+                                string txtt = String.Format("Aluno:{0,-10}\t CPF:{1,-5} \n", item.Nome, item.Cpf);
+                                //txt_listaaluno.Text += $"Aluno:{item.Nome}\tCPF:{item.Cpf}{Environment.NewLine}";
+                                txt_listaaluno.Text += txtt;
                             }
                         }
                         else
@@ -69,7 +71,7 @@ namespace ProjetoFrontEnd
                 {
                     MessageBox.Show("A data não está em formato correto!");
                 }
-                
+
             }
             else
             {
@@ -91,9 +93,9 @@ namespace ProjetoFrontEnd
         {
             txt_listaaluno.Text = "";
             var rgxcpf = new Regex(@"^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$");
-            if(txt_cpf.Text is null)
+            if (txt_cpf.Text is null)
             {
-               MessageBox.Show("Confirme o CPF para excluir.");
+                MessageBox.Show("Confirme o CPF para excluir.");
             }
             else
             {
@@ -102,13 +104,16 @@ namespace ProjetoFrontEnd
                     if (box_excluir.SelectedItem != null)
                     {
                         var aluno = (Alunos)box_excluir.SelectedItem;
-                        if(aluno.Cpf == txt_cpf.Text)
+                        if (aluno.Cpf == txt_cpf.Text)
                         {
                             gravarAlunosDB.Deletar(txt_cpf.Text);
                             var listaaluno = gravarAlunosDB.Result();
                             foreach (var item in listaaluno)
                             {
-                                txt_listaaluno.Text += $"Aluno:{item.Nome}\tCPF:{item.Cpf}{Environment.NewLine}";
+                                string txtt = String.Format("Aluno:{0,-10}\t CPF:{1,-5} \n", item.Nome, item.Cpf);
+                                //txt_listaaluno.Text += $"Aluno:{item.Nome}\tCPF:{item.Cpf}{Environment.NewLine}";
+                                txt_listaaluno.Text += txtt;
+                                box_excluir.Items.Add(item);
                             }
                         }
                         else
@@ -121,7 +126,7 @@ namespace ProjetoFrontEnd
                     {
                         MessageBox.Show("Selecione um aluno para excluir!");
                     }
-                    
+
                 }
                 else
                 {
@@ -136,14 +141,16 @@ namespace ProjetoFrontEnd
         {
             box_curso.Items.Clear();
             box_excluir.Items.Clear();
-            foreach(var item in gravarCursosApi.Result())
+            foreach (var item in gravarCursosApi.Result())
             {
                 box_curso.Items.Add(item);
             }
-            foreach(var item in gravarAlunosDB.Result())
+            foreach (var item in gravarAlunosDB.Result())
             {
                 box_excluir.Items.Add(item);
-                txt_listaaluno.Text += $"Aluno:{item.Nome}\tCPF:{item.Cpf}{Environment.NewLine}";
+                string txtt = String.Format("Aluno:{0,-10}\t CPF:{1,-5} \n", item.Nome, item.Cpf);
+                //txt_listaaluno.Text += $"Aluno:{item.Nome}\tCPF:{item.Cpf}{Environment.NewLine}";
+                txt_listaaluno.Text += txtt;
             }
         }
     }

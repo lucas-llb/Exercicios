@@ -16,10 +16,14 @@ namespace ProjetoPadawan.Controllers
         public ActionResult Get()
         {
             var listarmateria = new List<Materias>();
-            foreach (var item in db.Materia)
+            using (db)
             {
-                listarmateria.Add(item);
+                foreach (var item in db.Materia)
+                {
+                    listarmateria.Add(item);
+                }
             }
+
             return Ok(listarmateria);
         }
 
@@ -27,8 +31,11 @@ namespace ProjetoPadawan.Controllers
         [Route("cadastrarmateria")]
         public ActionResult Post(Materias materia)
         {
-            db.Materia.Add(materia);
-            db.SaveChanges();
+            using (db)
+            {
+                db.Materia.Add(materia);
+                db.SaveChanges();
+            }
             return Ok("Matéria cadastrada com sucesso!");
         }
 
@@ -38,9 +45,12 @@ namespace ProjetoPadawan.Controllers
         {
             try
             {
-                var deletado = db.Materia.FirstOrDefault(q => q.Nome == nome);
-                db.Materia.Remove(deletado);
-                db.SaveChanges();
+                using (db)
+                {
+                    var deletado = db.Materia.FirstOrDefault(q => q.Nome == nome);
+                    db.Materia.Remove(deletado);
+                    db.SaveChanges();
+                }
                 return Ok("Materia removida do sistema.");
             }
             catch

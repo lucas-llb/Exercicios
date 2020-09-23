@@ -85,6 +85,7 @@
             // 
             // txt_nome
             // 
+            this.txt_nome.AcceptsTab = true;
             this.txt_nome.Location = new System.Drawing.Point(110, 111);
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(237, 23);
@@ -145,6 +146,7 @@
             this.txt_listacurso.Location = new System.Drawing.Point(382, 111);
             this.txt_listacurso.Multiline = true;
             this.txt_listacurso.Name = "txt_listacurso";
+            this.txt_listacurso.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txt_listacurso.Size = new System.Drawing.Size(266, 248);
             this.txt_listacurso.TabIndex = 3;
             // 

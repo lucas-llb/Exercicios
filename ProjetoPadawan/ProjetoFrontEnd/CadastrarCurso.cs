@@ -45,6 +45,7 @@ namespace ProjetoFrontEnd
                         foreach(var item in listacurso)
                         {
                             txt_listacurso.Text += $"{item.Nome}{Environment.NewLine}";
+                            box_excluir.Items.Add(item);
                         }
                     }
                     else
@@ -78,6 +79,7 @@ namespace ProjetoFrontEnd
                 foreach (var item in listacurso)
                 {
                     txt_listacurso.Text += $"{item.Nome}{Environment.NewLine}";
+                    box_excluir.Items.Add(item);
                 }
             }
             else

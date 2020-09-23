@@ -18,7 +18,7 @@ namespace ProjetoFrontEnd
         private void btn_gravar_Click(object sender, EventArgs e)
         {
             var materias = new Materias();
-            var rgxdata = new Regex(@"^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]((19|20)([01]\d|20))$");
+            var rgxdata = new Regex(@"^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-](((19\d\d))|((20)([01]\d|20)))$");
             var rgxdescricao = new Regex(@"([A-Z]|[a-z]|\s)*");
             if (rgxdescricao.IsMatch(txt_nome.Text))
             {
@@ -40,6 +40,7 @@ namespace ProjetoFrontEnd
                             foreach (var item in listarmateria)
                             {
                                 txt_listarmateria.Text += $"{item.Nome}{Environment.NewLine}";
+                                box_excluir.Items.Add(item);
                             }
                         }
                         else
@@ -83,6 +84,7 @@ namespace ProjetoFrontEnd
                 foreach (var item in listarmateria)
                 {
                     txt_listarmateria.Text += $"{item.Nome}{Environment.NewLine}";
+                    box_excluir.Items.Add(item);
                 }
             }
             else

@@ -38,12 +38,9 @@ namespace ProjetoFrontEnd
             if (box_aluno.SelectedItem != null)
             {
                 var alunonota = listaaluno.Where(q => q.Nome == aluno).First();
-                foreach(var item in listanotas)
-                {
-                    if (item.AlunoId == alunonota.Id)
-                        listanotaaluno.Add(item);
-                }
-                
+                listanotaaluno.AddRange(from item in listanotas
+                                        where item.AlunoId == alunonota.Id
+                                        select item);
                 foreach (var item in listanotaaluno)
                 {
                     var materia = listamaterias.Find(q => q.Id == item.MateriaId);

@@ -16,10 +16,14 @@ namespace ProjetoPadawan.Controllers
         public ActionResult Get()
         {
             var listaralunos = new List<Alunos>();
-            foreach(var item in db.Aluno)
+            using (db)
             {
-                listaralunos.Add(item);
+                foreach (var item in db.Aluno)
+                {
+                    listaralunos.Add(item);
+                }
             }
+
 
             return Ok(listaralunos);
         }
@@ -28,8 +32,12 @@ namespace ProjetoPadawan.Controllers
         [Route("cadastraraluno")]
         public ActionResult Post(Alunos aluno)
         {
-            db.Aluno.Add(aluno);
-            db.SaveChanges();
+            using (db)
+            {
+                db.Aluno.Add(aluno);
+                db.SaveChanges();
+            }
+
             return Ok("Aluno cadastrado com sucesso!");
         }
 
@@ -37,9 +45,13 @@ namespace ProjetoPadawan.Controllers
         [Route("deletaraluno")]
         public ActionResult Delete(string cpf)
         {
-            var deletado = db.Aluno.FirstOrDefault(q => q.Cpf == cpf);
-            db.Aluno.Remove(deletado);
-            db.SaveChanges();
+            using (db)
+            {
+                var deletado = db.Aluno.FirstOrDefault(q => q.Cpf == cpf);
+                db.Aluno.Remove(deletado);
+                db.SaveChanges();
+            }
+
             return Ok("Aluno removido do sistema.");
         }
     }

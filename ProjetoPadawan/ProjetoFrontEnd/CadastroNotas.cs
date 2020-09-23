@@ -48,7 +48,9 @@ namespace ProjetoFrontEnd
                         var listarnota = gravarNotasApi.Result();
                         foreach (var item in listarnota)
                         {
-                            txt_listarnota.Text += $"Id:{item.Id}\tAluno:{item.Aluno}\tMatéria:{item.Materia}\tNota:{item.Nota}{Environment.NewLine}";
+                            var materia = gravarMateriasApi.Result().Find(q => q.Id == item.MateriaId);
+                            var aluno = gravarAlunoApi.Result().Find(q => q.Id == item.AlunoId);
+                            txt_listarnota.Text += $"Id:{item.Id}\tAluno:{aluno.Nome}\tMatéria:{materia.Nome}\tNota:{item.Nota}{Environment.NewLine}";
                         }
                     }
                     else
@@ -80,7 +82,9 @@ namespace ProjetoFrontEnd
             var listarnota = gravarNotasApi.Result();
             foreach (var item in listarnota)
             {
-                txt_listarnota.Text += $"Id:{item.Id}\tAluno:{item.Aluno}\tMatéria:{item.Materia}\tNota:{item.Nota}{Environment.NewLine}";
+                var materia = gravarMateriasApi.Result().Find(q => q.Id == item.MateriaId);
+                var aluno = gravarAlunoApi.Result().Find(q => q.Id == item.AlunoId);
+                txt_listarnota.Text += $"Id:{item.Id}\tAluno:{aluno.Nome}\tMatéria:{materia.Nome}\tNota:{item.Nota}{Environment.NewLine}";
             }
 
         }
@@ -89,6 +93,7 @@ namespace ProjetoFrontEnd
         {
             box_materias.Items.Clear();
             box_aluno.Items.Clear();
+            txt_listarnota.Text = "";
             foreach(var item in gravarMateriasApi.Result())
             {
                 box_materias.Items.Add(item);

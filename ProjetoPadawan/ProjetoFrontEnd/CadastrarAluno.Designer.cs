@@ -107,6 +107,7 @@
             // 
             // txt_nome
             // 
+            this.txt_nome.AcceptsTab = true;
             this.txt_nome.Location = new System.Drawing.Point(148, 120);
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(249, 23);
@@ -114,6 +115,7 @@
             // 
             // txt_sobrenome
             // 
+            this.txt_sobrenome.AcceptsTab = true;
             this.txt_sobrenome.Location = new System.Drawing.Point(148, 154);
             this.txt_sobrenome.Name = "txt_sobrenome";
             this.txt_sobrenome.Size = new System.Drawing.Size(249, 23);
@@ -121,6 +123,7 @@
             // 
             // txt_datanasc
             // 
+            this.txt_datanasc.AcceptsTab = true;
             this.txt_datanasc.Location = new System.Drawing.Point(148, 186);
             this.txt_datanasc.Name = "txt_datanasc";
             this.txt_datanasc.Size = new System.Drawing.Size(249, 23);
@@ -128,6 +131,7 @@
             // 
             // txt_cpf
             // 
+            this.txt_cpf.AcceptsTab = true;
             this.txt_cpf.Location = new System.Drawing.Point(148, 221);
             this.txt_cpf.Name = "txt_cpf";
             this.txt_cpf.Size = new System.Drawing.Size(249, 23);
@@ -188,6 +192,7 @@
             this.txt_listaaluno.Location = new System.Drawing.Point(457, 120);
             this.txt_listaaluno.Multiline = true;
             this.txt_listaaluno.Name = "txt_listaaluno";
+            this.txt_listaaluno.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txt_listaaluno.Size = new System.Drawing.Size(275, 263);
             this.txt_listaaluno.TabIndex = 7;
             // 

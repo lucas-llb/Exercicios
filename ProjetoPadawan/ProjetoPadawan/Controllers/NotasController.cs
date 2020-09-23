@@ -15,9 +15,12 @@ namespace ProjetoPadawan.Controllers
         [Route("listarnotas")]
         public ActionResult Get(string nome)
         {
-           // var listarNotas = new List<Notas>();
-            var listanotas = db.Notas.ToList();
-            
+            var listanotas = new List<Notas>();
+            using (db)
+            {
+                listanotas = db.Notas.ToList();
+            }
+
             return Ok(listanotas);
         }
 
@@ -25,8 +28,11 @@ namespace ProjetoPadawan.Controllers
         [Route("cadastrarnota")]
         public ActionResult Post(Notas notas)
         {
-            db.Notas.Add(notas);
-            db.SaveChanges();
+            using (db)
+            {
+                db.Notas.Add(notas);
+                db.SaveChanges();
+            }
             return Ok("Nota cadastrada com sucesso!");
         }
 
@@ -34,8 +40,11 @@ namespace ProjetoPadawan.Controllers
         [Route("deletarnotas")]
         public ActionResult Delete(int id)
         {
-            var deletado = db.Notas.FirstOrDefault(q => q.Id == id);
-            db.SaveChanges();
+            using (db)
+            {
+                var deletado = db.Notas.FirstOrDefault(q => q.Id == id);
+                db.SaveChanges();
+            }
             return Ok("Nota removida com sucesso.");
         }
     }

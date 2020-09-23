@@ -84,6 +84,7 @@
             // 
             // txt_nota
             // 
+            this.txt_nota.AcceptsTab = true;
             this.txt_nota.Location = new System.Drawing.Point(107, 184);
             this.txt_nota.Name = "txt_nota";
             this.txt_nota.Size = new System.Drawing.Size(247, 23);
@@ -160,6 +161,7 @@
             this.txt_listarnota.Location = new System.Drawing.Point(396, 103);
             this.txt_listarnota.Multiline = true;
             this.txt_listarnota.Name = "txt_listarnota";
+            this.txt_listarnota.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txt_listarnota.Size = new System.Drawing.Size(379, 205);
             this.txt_listarnota.TabIndex = 4;
             // 

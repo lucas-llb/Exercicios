@@ -87,6 +87,7 @@
             // 
             // txt_descricao
             // 
+            this.txt_descricao.AcceptsTab = true;
             this.txt_descricao.Location = new System.Drawing.Point(158, 122);
             this.txt_descricao.Name = "txt_descricao";
             this.txt_descricao.Size = new System.Drawing.Size(223, 23);
@@ -94,6 +95,7 @@
             // 
             // txt_datacadastro
             // 
+            this.txt_datacadastro.AcceptsTab = true;
             this.txt_datacadastro.Location = new System.Drawing.Point(158, 155);
             this.txt_datacadastro.Name = "txt_datacadastro";
             this.txt_datacadastro.Size = new System.Drawing.Size(223, 23);
@@ -160,6 +162,7 @@
             // 
             // txt_nome
             // 
+            this.txt_nome.AcceptsTab = true;
             this.txt_nome.Location = new System.Drawing.Point(158, 90);
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(223, 23);
@@ -170,6 +173,7 @@
             this.txt_listarmateria.Location = new System.Drawing.Point(425, 90);
             this.txt_listarmateria.Multiline = true;
             this.txt_listarmateria.Name = "txt_listarmateria";
+            this.txt_listarmateria.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txt_listarmateria.Size = new System.Drawing.Size(265, 257);
             this.txt_listarmateria.TabIndex = 2;
             // 
