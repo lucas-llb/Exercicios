@@ -44,12 +44,14 @@ namespace ProjetoFrontEnd
                 foreach (var item in listanotaaluno)
                 {
                     var materia = listamaterias.Find(q => q.Id == item.MateriaId);
-                    txt_lista.Text += $"ID: {item.Id}\tMatéria: {materia.Nome}\t\tNota: {item.Nota}{Environment.NewLine}";
+                    txt_lista.Text += $"ID: {item.Id}    Matéria: {materia.Nome.PadRight(25)} Nota: {item.Nota}{Environment.NewLine}";
+                    //string txtt = String.Format("Id:{0,-3} Matéria:{1,-30} Nota:{2}{3} ",item.Id, materia.Nome, item.Nota, Environment.NewLine);
+                   // txt_lista.Text += txtt;
                 }
             }
             else
             {
-                MessageBox.Show("O CPF não é válido.");
+                MessageBox.Show("Nenhum aluno foi selecionado.");
             }
 
         }
