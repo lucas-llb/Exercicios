@@ -25,19 +25,19 @@ namespace RaidSolution
         {
             var hero = new Heroi();
             hero.Nome = txt_nome.Text;
-            if (rbtn_Void.Enabled)
+            if (rbtn_Void.Checked)
             {
                 hero.Tipo = "Void";
             }
-            if (rbtn_spirit.Enabled)
+            if (rbtn_spirit.Checked)
             {
                 hero.Tipo = "Spirit";
             }
-            if (rbtn_Magic.Enabled)
+            if (rbtn_Magic.Checked)
             {
                 hero.Tipo = "Magic";
             }
-            if (rbtn_Force.Enabled)
+            if (rbtn_Force.Checked)
             {
                 hero.Tipo = "Force";
             }

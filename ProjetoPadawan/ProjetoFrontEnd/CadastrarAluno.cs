@@ -5,7 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-
+using ProjetoModels.Validadores;
+using ProjetoModels;
 
 namespace ProjetoFrontEnd
 {
@@ -25,25 +26,22 @@ namespace ProjetoFrontEnd
         {
             var listacurso = gravarCursosApi.Result();
             var listaNomeCurso = listacurso.Where(q => q.Situacao == "ATIVO").Select(q => q.Nome);
+            var Validadores = new AlunoValidador();
             var aluno = new Alunos();
-            var rgxNome = new Regex(@"[a-z]|[A-Z]|\s");
-            var rgxcpf = new Regex(@"^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$");
-            var rgx = new Regex(@"^((0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]((19)\d\d))|((0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-](20[01]{2}))|((0?[1])[\/\-](0?1)[\/\-](2002))");
             if (txt_nome.Text != null && txt_sobrenome.Text != null && txt_datanasc != null && txt_cpf.Text != null)
             {
-                if (rgx.IsMatch(txt_datanasc.Text))
+                if (Validadores.ValidaData(txt_datanasc.Text))
                 {
                     aluno.DataNascimento = Convert.ToDateTime(txt_datanasc.Text);
-                    if (rgxNome.IsMatch(txt_nome.Text))
+                    if (Validadores.NomeLetras(txt_nome.Text))
                     {
                         aluno.Nome = txt_nome.Text.ToUpper();
-                        if (rgxcpf.IsMatch(txt_cpf.Text))
+                        if (Validadores.CpfNumero(txt_cpf.Text))
                         {
                             aluno.Sobrenome = txt_sobrenome.Text.ToUpper();
-                            aluno.Cpf = txt_cpf.Text;
-                            //aluno.Curso = (Cursos)box_curso.SelectedItem;
+                            var cpf = txt_cpf.Text.Insert(3, ".").Insert(7, ".").Insert(11, "-");
+                            aluno.Cpf = cpf;
                             txt_listaaluno.Text = "";
-                            //aluno.Curso.Nome = txt_curso.Text.ToUpper();
                             aluno.IdCurso = ((Cursos)box_curso.SelectedItem).Id;
                             gravarAlunosDB.Add(aluno);
                             lbl_erro.Text = "";
@@ -92,14 +90,14 @@ namespace ProjetoFrontEnd
         private void btn_excluir_Click(object sender, EventArgs e)
         {
             txt_listaaluno.Text = "";
-            var rgxcpf = new Regex(@"^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$");
+            var Validadores = new AlunoValidador();
             if (txt_cpf.Text is null)
             {
                 MessageBox.Show("Confirme o CPF para excluir.");
             }
             else
             {
-                if (rgxcpf.IsMatch(txt_cpf.Text))
+                if (Validadores.CpfNumero(txt_cpf.Text))
                 {
                     if (box_excluir.SelectedItem != null)
                     {
@@ -111,7 +109,6 @@ namespace ProjetoFrontEnd
                             foreach (var item in listaaluno)
                             {
                                 string txtt = String.Format("Aluno:{0,-10}\t CPF:{1,-5} \n", item.Nome, item.Cpf);
-                                //txt_listaaluno.Text += $"Aluno:{item.Nome}\tCPF:{item.Cpf}{Environment.NewLine}";
                                 txt_listaaluno.Text += txtt;
                                 box_excluir.Items.Add(item);
                             }

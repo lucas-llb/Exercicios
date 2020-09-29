@@ -1,4 +1,5 @@
 ﻿using ProjetoModels.Tools;
+using ProjetoModels.Validadores;
 using ProjetoPadawan.Models;
 using System;
 using System.Collections.Generic;
@@ -30,14 +31,13 @@ namespace ProjetoFrontEnd
             var listaalunos = gravarAlunoApi.Result().Select(q=>q.Nome);
             var listamaterias = gravarMateriasApi.Result().Where(q => q.Situacao == "ATIVO").Select(q => q.Nome);
             var nota = new Notas();
-           // var rgxaluno = new Regex(@"([A-Z]|[a-z]|\s)*");
-            var rgxnota = new Regex(@"^([1-9]?\d|100)$");
+            var validador = new NotasValidador();
             if (box_aluno.SelectedItem != null)
             {
                 nota.AlunoId = ((Alunos)box_aluno.SelectedItem).Id;
                 if (box_materias.SelectedItem != null)
                 {
-                    if (rgxnota.IsMatch(txt_nota.Text))
+                    if (validador.validaNota(txt_nota.Text))
                     {
                         txt_listarnota.Text = "";
                         nota.Nota = Convert.ToInt32(txt_nota.Text);

@@ -94,7 +94,6 @@
             this.rbtn_Void.Name = "rbtn_Void";
             this.rbtn_Void.Size = new System.Drawing.Size(46, 17);
             this.rbtn_Void.TabIndex = 3;
-            this.rbtn_Void.TabStop = true;
             this.rbtn_Void.Text = "Void";
             this.rbtn_Void.UseVisualStyleBackColor = true;
             // 
@@ -105,7 +104,6 @@
             this.rbtn_spirit.Name = "rbtn_spirit";
             this.rbtn_spirit.Size = new System.Drawing.Size(48, 17);
             this.rbtn_spirit.TabIndex = 4;
-            this.rbtn_spirit.TabStop = true;
             this.rbtn_spirit.Text = "Spirit";
             this.rbtn_spirit.UseVisualStyleBackColor = true;
             // 
@@ -116,7 +114,6 @@
             this.rbtn_Force.Name = "rbtn_Force";
             this.rbtn_Force.Size = new System.Drawing.Size(52, 17);
             this.rbtn_Force.TabIndex = 5;
-            this.rbtn_Force.TabStop = true;
             this.rbtn_Force.Text = "Force";
             this.rbtn_Force.UseVisualStyleBackColor = true;
             // 
@@ -127,7 +124,6 @@
             this.rbtn_Magic.Name = "rbtn_Magic";
             this.rbtn_Magic.Size = new System.Drawing.Size(54, 17);
             this.rbtn_Magic.TabIndex = 6;
-            this.rbtn_Magic.TabStop = true;
             this.rbtn_Magic.Text = "Magic";
             this.rbtn_Magic.UseVisualStyleBackColor = true;
             // 

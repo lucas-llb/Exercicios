@@ -1,4 +1,5 @@
 ﻿using ProjetoModels.Tools;
+using ProjetoModels.Validadores;
 using ProjetoPadawan.Models;
 using System;
 using System.Text.RegularExpressions;
@@ -18,15 +19,14 @@ namespace ProjetoFrontEnd
         private void btn_gravar_Click(object sender, EventArgs e)
         {
             var materias = new Materias();
-            var rgxdata = new Regex(@"^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-](((19\d\d))|((20)([01]\d|20)))$");
-            var rgxdescricao = new Regex(@"([A-Z]|[a-z]|\s)*");
-            if (rgxdescricao.IsMatch(txt_nome.Text))
+            var validador = new MateriaValidador();
+            if (validador.validaNome(txt_nome.Text))
             {
                 materias.Nome = txt_nome.Text.ToUpper();
-                if (rgxdata.IsMatch(txt_datacadastro.Text))
+                if (validador.validaData(txt_datacadastro.Text))
                 {
                     materias.DataCadastro = Convert.ToDateTime(txt_datacadastro.Text);
-                    if (rgxdescricao.IsMatch(txt_descricao.Text))
+                    if (validador.validaNome(txt_descricao.Text))
                     {
                         materias.Descricao = txt_descricao.Text;
                         if (box_situacao.SelectedItem != null)
