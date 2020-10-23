@@ -43,8 +43,7 @@ namespace ProjetoFrontEnd
                         nota.Nota = Convert.ToInt32(txt_nota.Text);
                         nota.MateriaId = ((Materias)box_materias.SelectedItem).Id;
                         gravarNotasApi.Add(nota);
-                        lbl_erro.Text = "";
-                        lbl_success.Text = "Nota cadastrada com sucesso!";
+                        MessageBox.Show("Nota cadastrada com sucesso!", "Chique demais", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         var listarnota = gravarNotasApi.Result();
                         foreach (var item in listarnota)
                         {
@@ -55,17 +54,17 @@ namespace ProjetoFrontEnd
                     }
                     else
                     {
-                        MessageBox.Show("Campo nota deve conter apenas números!");
+                        MessageBox.Show("Campo nota deve conter apenas números!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Matéria não encontrada!");
+                    MessageBox.Show("Matéria não encontrada!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Aluno não encontrado!");
+                MessageBox.Show("Aluno não encontrado!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -79,6 +78,7 @@ namespace ProjetoFrontEnd
             txt_listarnota.Text = "";
             var id = Convert.ToInt32(txt_id.Text);
             gravarNotasApi.Deletar(id);
+            MessageBox.Show("Nota deletada com sucesso!", "Chique demais", MessageBoxButtons.OK, MessageBoxIcon.Information);
             var listarnota = gravarNotasApi.Result();
             foreach (var item in listarnota)
             {

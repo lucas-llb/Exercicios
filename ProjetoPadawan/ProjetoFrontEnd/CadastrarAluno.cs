@@ -28,7 +28,7 @@ namespace ProjetoFrontEnd
             var listaNomeCurso = listacurso.Where(q => q.Situacao == "ATIVO").Select(q => q.Nome);
             var Validadores = new AlunoValidador();
             var aluno = new Alunos();
-            if (txt_nome.Text != null && txt_sobrenome.Text != null && txt_datanasc != null && txt_cpf.Text != null)
+            if (txt_nome.Text != null && txt_sobrenome.Text != null && txt_datanasc.Text != null && txt_cpf.Text != null && box_curso.SelectedItem != null)
             {
                 if (Validadores.ValidaData(txt_datanasc.Text))
                 {
@@ -39,41 +39,41 @@ namespace ProjetoFrontEnd
                         if (Validadores.CpfNumero(txt_cpf.Text))
                         {
                             aluno.Sobrenome = txt_sobrenome.Text.ToUpper();
-                            var cpf = txt_cpf.Text.Insert(3, ".").Insert(7, ".").Insert(11, "-");
+                            var cpf = Validadores.FormataCpf(txt_cpf.Text);
                             aluno.Cpf = cpf;
                             txt_listaaluno.Text = "";
                             aluno.IdCurso = ((Cursos)box_curso.SelectedItem).Id;
                             gravarAlunosDB.Add(aluno);
-                            lbl_erro.Text = "";
-                            MessageBox.Show("Cadastro feito com sucesso!");
+                            MessageBox.Show("Cadastro feito com sucesso!", "Chique demais", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             var listaaluno = gravarAlunosDB.Result();
                             foreach (var item in listaaluno)
                             {
                                 string txtt = String.Format("Aluno:{0,-10}\t CPF:{1,-5} \n", item.Nome, item.Cpf);
                                 //txt_listaaluno.Text += $"Aluno:{item.Nome}\tCPF:{item.Cpf}{Environment.NewLine}";
                                 txt_listaaluno.Text += txtt;
+                                box_excluir.Items.Add(item);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("O CPF não é válido!");
+                            MessageBox.Show("O CPF não é válido!","Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("O nome não pode ter números ou caracteres especiais!");
+                        MessageBox.Show("O nome não pode ter números ou caracteres especiais!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show("A data não está em formato correto!");
+                    MessageBox.Show("A data não está em formato correto!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
             else
             {
-                MessageBox.Show("Há campos que devem ser preenchidos!");
+                MessageBox.Show("Há campos que devem ser preenchidos!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             txt_nome.Text = "";
@@ -93,7 +93,7 @@ namespace ProjetoFrontEnd
             var Validadores = new AlunoValidador();
             if (txt_cpf.Text is null)
             {
-                MessageBox.Show("Confirme o CPF para excluir.");
+                MessageBox.Show("Confirme o CPF para excluir.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -102,9 +102,11 @@ namespace ProjetoFrontEnd
                     if (box_excluir.SelectedItem != null)
                     {
                         var aluno = (Alunos)box_excluir.SelectedItem;
-                        if (aluno.Cpf == txt_cpf.Text)
+                        var cpf = Validadores.FormataCpf(txt_cpf.Text);
+                        if (aluno.Cpf == cpf)
                         {
-                            gravarAlunosDB.Deletar(txt_cpf.Text);
+                            gravarAlunosDB.Deletar(cpf);
+                            MessageBox.Show("Aluno deletado com sucesso!", "Chique demais", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             var listaaluno = gravarAlunosDB.Result();
                             foreach (var item in listaaluno)
                             {
@@ -115,19 +117,19 @@ namespace ProjetoFrontEnd
                         }
                         else
                         {
-                            MessageBox.Show("CPF e aluno não coincidem.");
+                            MessageBox.Show("CPF e aluno não coincidem.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
 
                     }
                     else
                     {
-                        MessageBox.Show("Selecione um aluno para excluir!");
+                        MessageBox.Show("Selecione um aluno para excluir!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show("Digite um CPF válido!");
+                    MessageBox.Show("Digite um CPF válido!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 

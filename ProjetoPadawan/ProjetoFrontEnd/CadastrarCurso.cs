@@ -39,8 +39,7 @@ namespace ProjetoFrontEnd
                         curso.Materia = box_materias.Text.ToUpper();
                         curso.Situacao = box_situacao.Text;
                         gravarCursosApi.Add(curso);
-                        lbl_erro.Text = "";
-                        MessageBox.Show("Curso cadastrado com sucesso!");
+                        MessageBox.Show("Curso cadastrado com sucesso!", "Chique demais", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         var listacurso = gravarCursosApi.Result();
                         foreach(var item in listacurso)
                         {
@@ -50,18 +49,18 @@ namespace ProjetoFrontEnd
                     }
                     else
                     {
-                        MessageBox.Show("Materia não encontrada!");
+                        MessageBox.Show("Materia não encontrada!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show("Por favor digite apenas ATIVO ou INATIVO!");
+                    MessageBox.Show("Por favor digite apenas ATIVO ou INATIVO!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("O campo Nome aceita apenas letras!");
+                MessageBox.Show("O campo Nome aceita apenas letras!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
 
@@ -75,6 +74,7 @@ namespace ProjetoFrontEnd
             {
                 var nome = box_excluir.Text;
                 gravarCursosApi.Deletar(nome);
+                MessageBox.Show("Curso deletado com sucesso!", "Chique demais", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 var listacurso = gravarCursosApi.Result();
                 foreach (var item in listacurso)
                 {
@@ -84,7 +84,7 @@ namespace ProjetoFrontEnd
             }
             else
             {
-                MessageBox.Show("Selecione um curso para ser excluído!");
+                MessageBox.Show("Selecione um curso para ser excluído!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }

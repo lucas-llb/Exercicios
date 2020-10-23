@@ -34,8 +34,7 @@ namespace ProjetoFrontEnd
                             txt_listarmateria.Text = "";
                             materias.Situacao = box_situacao.Text;
                             gravarMateriasDB.Add(materias);
-                            lbl_erro.Text = "";
-                            MessageBox.Show("Matéria salva com sucesso!");
+                            MessageBox.Show("Matéria salva com sucesso!", "Chique demais", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             var listarmateria = gravarMateriasDB.Result();
                             foreach (var item in listarmateria)
                             {
@@ -45,24 +44,24 @@ namespace ProjetoFrontEnd
                         }
                         else
                         {
-                            MessageBox.Show("Por favor, entre com a situação!");
+                            MessageBox.Show("Por favor, entre com a situação!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
 
                     }
                     else
                     {
-                        MessageBox.Show("Apanas letras são permitidas na descrição!");
+                        MessageBox.Show("Apanas letras são permitidas na descrição!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show("Informe uma data válida!");
+                    MessageBox.Show("Informe uma data válida!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("O campo Nome deve conter apenas letras!");
+                MessageBox.Show("O campo Nome deve conter apenas letras!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -80,6 +79,7 @@ namespace ProjetoFrontEnd
             {
                 var nome = box_excluir.Text;
                 gravarMateriasDB.Deletar(nome);
+                MessageBox.Show("Matéria deletada com sucesso!", "Chique demais", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 var listarmateria = gravarMateriasDB.Result();
                 foreach (var item in listarmateria)
                 {
@@ -89,7 +89,7 @@ namespace ProjetoFrontEnd
             }
             else
             {
-                MessageBox.Show("Selecione uma matéria para ser excluída!");
+                MessageBox.Show("Selecione uma matéria para ser excluída!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

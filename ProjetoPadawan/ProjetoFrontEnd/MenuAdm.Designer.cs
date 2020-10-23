@@ -35,6 +35,7 @@
             this.btn_cadNota = new System.Windows.Forms.Button();
             this.btn_ListNota = new System.Windows.Forms.Button();
             this.btn_voltar = new System.Windows.Forms.Button();
+            this.Btn_usuario = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -99,7 +100,7 @@
             // 
             // btn_voltar
             // 
-            this.btn_voltar.Location = new System.Drawing.Point(78, 466);
+            this.btn_voltar.Location = new System.Drawing.Point(78, 531);
             this.btn_voltar.Name = "btn_voltar";
             this.btn_voltar.Size = new System.Drawing.Size(279, 46);
             this.btn_voltar.TabIndex = 1;
@@ -107,11 +108,22 @@
             this.btn_voltar.UseVisualStyleBackColor = true;
             this.btn_voltar.Click += new System.EventHandler(this.btn_voltar_Click);
             // 
+            // Btn_usuario
+            // 
+            this.Btn_usuario.Enabled = false;
+            this.Btn_usuario.Location = new System.Drawing.Point(78, 453);
+            this.Btn_usuario.Name = "Btn_usuario";
+            this.Btn_usuario.Size = new System.Drawing.Size(279, 46);
+            this.Btn_usuario.TabIndex = 1;
+            this.Btn_usuario.Text = "Cadastro de usuário";
+            this.Btn_usuario.UseVisualStyleBackColor = true;
+            // 
             // MenuAdm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(451, 543);
+            this.ClientSize = new System.Drawing.Size(451, 605);
+            this.Controls.Add(this.Btn_usuario);
             this.Controls.Add(this.btn_voltar);
             this.Controls.Add(this.btn_ListNota);
             this.Controls.Add(this.btn_cadNota);
@@ -135,5 +147,6 @@
         private System.Windows.Forms.Button btn_cadNota;
         private System.Windows.Forms.Button btn_ListNota;
         private System.Windows.Forms.Button btn_voltar;
+        private System.Windows.Forms.Button Btn_usuario;
     }
 }

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProjetoPadawan.Models
 {
-    public class Cursos
+    public class Cursos : BaseEntity
     {
-        public int Id { get; set; }
         public string Nome { get; set; }
         public string Materia { get; set; }
         public string Situacao { get; set; }

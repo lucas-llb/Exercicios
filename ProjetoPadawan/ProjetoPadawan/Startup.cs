@@ -1,17 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using ProjetoPadawan.Data;
+using Microsoft.EntityFrameworkCore;
+using PadawanInfra.Context;
+using PadawanInfra.Interfaces;
+using PadawanInfra.Repository;
+using ProjetoDomain.Interfaces;
+using ProjetoDomain.Validadores;
+using ProjetoDomain.Validadores.Interfaces;
+using ProjetoModels.Validadores;
 
 namespace ProjetoPadawan
 {
@@ -27,8 +26,9 @@ namespace ProjetoPadawan
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            AddDbContextCollection(services);
             services.AddControllers();
-            services.AddDbContext<AlunoContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            DependencyInjection(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +49,17 @@ namespace ProjetoPadawan
             {
                 endpoints.MapControllers();
             });
+        }
+        private void AddDbContextCollection(IServiceCollection services)
+        {
+            services.AddDbContext<AlunoContext>(opt => opt
+                .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+        }
+        public void DependencyInjection(IServiceCollection services)
+        {
+            services.AddScoped<IAlunoRepository, AlunoRepository>();
+            services.AddScoped<IAlunoValidator, AlunoValidador>();
+            services.AddScoped<IDeletarAlunoValidator, DeletarAlunoValidator>();
         }
     }
 }

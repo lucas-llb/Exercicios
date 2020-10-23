@@ -12,7 +12,8 @@ using System.Windows.Forms;
 
 namespace ProjetoFrontEnd
 {
-    public partial class ListarNotas : Form
+    public partial class
+        ListarNotas : Form
     {
         private readonly GravarNotasApi gravaNotasDB;
         private readonly GravarAlunoApi gravarAlunoApi;
@@ -51,7 +52,7 @@ namespace ProjetoFrontEnd
             }
             else
             {
-                MessageBox.Show("Nenhum aluno foi selecionado.");
+                MessageBox.Show("Nenhum aluno foi selecionado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

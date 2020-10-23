@@ -37,8 +37,6 @@
             this.btn_gravar = new System.Windows.Forms.Button();
             this.btn_excluir = new System.Windows.Forms.Button();
             this.btn_voltar = new System.Windows.Forms.Button();
-            this.lbl_erro = new System.Windows.Forms.Label();
-            this.lbl_success = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txt_nome = new System.Windows.Forms.TextBox();
             this.txt_listarmateria = new System.Windows.Forms.TextBox();
@@ -131,26 +129,6 @@
             this.btn_voltar.UseVisualStyleBackColor = true;
             this.btn_voltar.Click += new System.EventHandler(this.btn_voltar_Click);
             // 
-            // lbl_erro
-            // 
-            this.lbl_erro.AutoSize = true;
-            this.lbl_erro.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbl_erro.ForeColor = System.Drawing.Color.Red;
-            this.lbl_erro.Location = new System.Drawing.Point(214, 227);
-            this.lbl_erro.Name = "lbl_erro";
-            this.lbl_erro.Size = new System.Drawing.Size(0, 21);
-            this.lbl_erro.TabIndex = 4;
-            // 
-            // lbl_success
-            // 
-            this.lbl_success.AutoSize = true;
-            this.lbl_success.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbl_success.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lbl_success.Location = new System.Drawing.Point(214, 326);
-            this.lbl_success.Name = "lbl_success";
-            this.lbl_success.Size = new System.Drawing.Size(0, 21);
-            this.lbl_success.TabIndex = 5;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -217,8 +195,6 @@
             this.Controls.Add(this.txt_listarmateria);
             this.Controls.Add(this.txt_nome);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.lbl_success);
-            this.Controls.Add(this.lbl_erro);
             this.Controls.Add(this.btn_voltar);
             this.Controls.Add(this.btn_gravar);
             this.Controls.Add(this.txt_datacadastro);
@@ -247,8 +223,6 @@
         private System.Windows.Forms.Button btn_gravar;
         private System.Windows.Forms.Button btn_excluir;
         private System.Windows.Forms.Button btn_voltar;
-        private System.Windows.Forms.Label lbl_erro;
-        private System.Windows.Forms.Label lbl_success;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txt_nome;
         private System.Windows.Forms.TextBox txt_listarmateria;

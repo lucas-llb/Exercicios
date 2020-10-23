@@ -41,8 +41,6 @@
             this.btn_gravar = new System.Windows.Forms.Button();
             this.btn_voltar = new System.Windows.Forms.Button();
             this.btn_excluir = new System.Windows.Forms.Button();
-            this.lbl_erro = new System.Windows.Forms.Label();
-            this.lbl_succes = new System.Windows.Forms.Label();
             this.txt_listaaluno = new System.Windows.Forms.TextBox();
             this.box_curso = new System.Windows.Forms.ComboBox();
             this.box_excluir = new System.Windows.Forms.ComboBox();
@@ -167,26 +165,6 @@
             this.btn_excluir.UseVisualStyleBackColor = true;
             this.btn_excluir.Click += new System.EventHandler(this.btn_excluir_Click);
             // 
-            // lbl_erro
-            // 
-            this.lbl_erro.AutoSize = true;
-            this.lbl_erro.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbl_erro.ForeColor = System.Drawing.Color.Red;
-            this.lbl_erro.Location = new System.Drawing.Point(238, 296);
-            this.lbl_erro.Name = "lbl_erro";
-            this.lbl_erro.Size = new System.Drawing.Size(0, 25);
-            this.lbl_erro.TabIndex = 5;
-            // 
-            // lbl_succes
-            // 
-            this.lbl_succes.AutoSize = true;
-            this.lbl_succes.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbl_succes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lbl_succes.Location = new System.Drawing.Point(238, 402);
-            this.lbl_succes.Name = "lbl_succes";
-            this.lbl_succes.Size = new System.Drawing.Size(0, 25);
-            this.lbl_succes.TabIndex = 6;
-            // 
             // txt_listaaluno
             // 
             this.txt_listaaluno.Location = new System.Drawing.Point(457, 120);
@@ -231,8 +209,6 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.box_curso);
             this.Controls.Add(this.txt_listaaluno);
-            this.Controls.Add(this.lbl_succes);
-            this.Controls.Add(this.lbl_erro);
             this.Controls.Add(this.btn_voltar);
             this.Controls.Add(this.btn_gravar);
             this.Controls.Add(this.txt_cpf);
@@ -269,8 +245,6 @@
         private System.Windows.Forms.Button btn_gravar;
         private System.Windows.Forms.Button btn_voltar;
         private System.Windows.Forms.Button btn_excluir;
-        private System.Windows.Forms.Label lbl_erro;
-        private System.Windows.Forms.Label lbl_succes;
         private System.Windows.Forms.TextBox txt_listaaluno;
         private System.Windows.Forms.ComboBox box_curso;
         private System.Windows.Forms.ComboBox box_excluir;

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ProjetoPadawan.Data;
+using PadawanApplication.Interfaces;
 using ProjetoPadawan.Models;
 
 namespace ProjetoPadawan.Controllers
@@ -10,49 +12,55 @@ namespace ProjetoPadawan.Controllers
     [Route("AlunoController")]
     public class AlunoController : ControllerBase
     {
-        private readonly AlunoContext db = new AlunoContext();
+        private readonly IAlunoService _alunoService;
+
+        public AlunoController(IAlunoService alunoService)
+        {
+            _alunoService = alunoService;
+        }
+
         [HttpGet]
         [Route("listaraluno")]
-        public ActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var listaralunos = new List<Alunos>();
-            using (db)
+            try
             {
-                foreach (var item in db.Aluno)
-                {
-                    listaralunos.Add(item);
-                }
+                return Ok(await _alunoService.GetAllAsync());
             }
-
-
-            return Ok(listaralunos);
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost]
         [Route("cadastraraluno")]
-        public ActionResult Post(Alunos aluno)
+        public async Task<IActionResult> Post(Alunos aluno)
         {
-            using (db)
+            var result = await _alunoService.CreateAsync(aluno);
+            if (result.Success)
             {
-                db.Aluno.Add(aluno);
-                db.SaveChanges();
+                return Ok("Cadastro realizado com sucesso!");
             }
-
-            return Ok("Aluno cadastrado com sucesso!");
+            else
+            {
+                return BadRequest(result.Messages);
+            }
         }
 
         [HttpDelete]
         [Route("deletaraluno")]
-        public ActionResult Delete(string cpf)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            using (db)
+            var result = await _alunoService.DeleteAsync(id);
+            if (result.Success)
             {
-                var deletado = db.Aluno.FirstOrDefault(q => q.Cpf == cpf);
-                db.Aluno.Remove(deletado);
-                db.SaveChanges();
+                return Ok("Categoria deletada com sucesso!");
             }
-
-            return Ok("Aluno removido do sistema.");
+            else
+            {
+                return BadRequest(result.Messages);
+            }
         }
     }
 }
