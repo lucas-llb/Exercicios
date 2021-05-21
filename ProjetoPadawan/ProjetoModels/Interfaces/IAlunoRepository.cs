@@ -7,5 +7,6 @@ namespace PadawanInfra.Interfaces
 {
     public interface IAlunoRepository : IGenericRepository<Alunos>
     {
+        bool VerificaCpfExiste(string cpf);
     }
 }

@@ -1,55 +1,65 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ProjetoPadawan.Data;
+using PadawanApplication.Interfaces;
 using ProjetoPadawan.Models;
 
 namespace ProjetoPadawan.Controllers
 {
-    [Route("CursoController")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CursoController : ControllerBase
     {
-        private readonly AlunoContext db = new AlunoContext(); 
-        [HttpGet]
-        [Route("listarcurso")]
-        public ActionResult Get()
+        private readonly ICursoService _cursoService;
+
+        public CursoController(ICursoService cursoService)
         {
-            var listacursos = new List<Cursos>();
-            using (db)
+            _cursoService = cursoService;
+        }
+
+        [HttpGet]
+        [Route("listar")]
+        public async Task<IActionResult> Get()
+        {
+            try
             {
-                foreach (var item in db.Curso)
-                {
-                    listacursos.Add(item);
-                }
+                return Ok(await _cursoService.GetAllAsync());
             }
-
-            return Ok(listacursos);
-
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost]
-        [Route("cadastrarcurso")]
-        public ActionResult Post(Cursos curso)
+        [Route("cadastrar")]
+        public async Task<IActionResult> Post(Cursos curso)
         {
-            using (db)
+            var result = await _cursoService.CreateAsync(curso);
+            if (result.Success)
             {
-                db.Curso.Add(curso);
-                db.SaveChanges();
+                return Ok("Cadastro realizado com sucesso!");
             }
-            return Ok("Curso adicionado com Sucesso!");
+            else
+            {
+                return BadRequest(result.Messages);
+            }
         }
         [HttpDelete]
         [Route("deletarcurso")]
-        public ActionResult Delete(string nome)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            using (db)
+            var result = await _cursoService.DeleteAsync(id);
+            if (result.Success)
             {
-                var deletado = db.Curso.FirstOrDefault(q => q.Nome == nome);
-                db.Curso.Remove(deletado);
-                db.SaveChanges();
+                return Ok("Curso deletado com sucesso!");
             }
-            return Ok("Curso removido do sistema.");
+            else
+            {
+                return BadRequest(result.Messages);
+            }
         }
     }
 }

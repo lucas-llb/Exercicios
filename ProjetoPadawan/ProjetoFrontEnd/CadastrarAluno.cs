@@ -26,7 +26,7 @@ namespace ProjetoFrontEnd
         {
             var listacurso = gravarCursosApi.Result();
             var listaNomeCurso = listacurso.Where(q => q.Situacao == "ATIVO").Select(q => q.Nome);
-            var Validadores = new AlunoValidador();
+            var Validadores = new CadastrarAlunoValidador();
             var aluno = new Alunos();
             if (txt_nome.Text != null && txt_sobrenome.Text != null && txt_datanasc.Text != null && txt_cpf.Text != null && box_curso.SelectedItem != null)
             {
@@ -90,7 +90,7 @@ namespace ProjetoFrontEnd
         private void btn_excluir_Click(object sender, EventArgs e)
         {
             txt_listaaluno.Text = "";
-            var Validadores = new AlunoValidador();
+            var Validadores = new CadastrarAlunoValidador();
             if (txt_cpf.Text is null)
             {
                 MessageBox.Show("Confirme o CPF para excluir.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);

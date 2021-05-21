@@ -1,61 +1,63 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ProjetoPadawan.Data;
+using PadawanApplication.Interfaces;
 using ProjetoPadawan.Models;
 
 namespace ProjetoPadawan.Controllers
 {
-    [Route("MateriaController")]
+    [Route("api/[controller]")]
     [ApiController]
     public class MateriasController : ControllerBase
     {
-        private readonly AlunoContext db = new AlunoContext();
+        private readonly IMateriaService _materiaService;
+
+        public MateriasController(IMateriaService materiaService)
+        {
+            _materiaService = materiaService;
+        }
+
         [HttpGet]
-        [Route("listarmaterias")]
-        public ActionResult Get()
-        {
-            var listarmateria = new List<Materias>();
-            using (db)
-            {
-                foreach (var item in db.Materia)
-                {
-                    listarmateria.Add(item);
-                }
-            }
-
-            return Ok(listarmateria);
-        }
-
-        [HttpPost]
-        [Route("cadastrarmateria")]
-        public ActionResult Post(Materias materia)
-        {
-            using (db)
-            {
-                db.Materia.Add(materia);
-                db.SaveChanges();
-            }
-            return Ok("Matéria cadastrada com sucesso!");
-        }
-
-        [HttpDelete]
-        [Route("deletarmateria")]
-        public ActionResult Delete(string nome)
+        [Route("listar")]
+        public async Task<IActionResult> Get()
         {
             try
             {
-                using (db)
-                {
-                    var deletado = db.Materia.FirstOrDefault(q => q.Nome == nome);
-                    db.Materia.Remove(deletado);
-                    db.SaveChanges();
-                }
-                return Ok("Materia removida do sistema.");
+                return Ok(await _materiaService.GetAllAsync());
             }
-            catch
+            catch (Exception ex)
             {
-                return Ok("Matéria não encontrada!");
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("cadastrar")]
+        public async Task<IActionResult> Post(Materias materia)
+        {
+            var result = await _materiaService.CreateAsync(materia);
+            if (result.Success)
+            {
+                return Ok("Cadastro realizado com sucesso!");
+            }
+            else
+            {
+                return BadRequest(result.Messages);
+            }
+        }
+
+        [HttpDelete]
+        [Route("deletar")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await _materiaService.DeleteAsync(id);
+            if (result.Success)
+            {
+                return Ok("Materia deletada com sucesso!");
+            }
+            else
+            {
+                return BadRequest(result.Messages);
             }
         }
     }

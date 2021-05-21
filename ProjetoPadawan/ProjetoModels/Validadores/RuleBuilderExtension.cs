@@ -20,5 +20,13 @@ namespace ProjetoDomain.Validadores
         {
             return ruleBuilder.SetValidator(new RegularExpressionValidator(@"^((0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]((19)\d\d))|((0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-](20[01]{2}))|((0?[1])[\/\-](0?1)[\/\-](2002))"));
         }
+        public static IRuleBuilderOptions<T, DateTime> IsValidDate<T>(this IRuleBuilder<T, DateTime> ruleBuilder)
+        {
+            return ruleBuilder.Must(q=>q.Date>=DateTime.Now);
+        }
+        public static IRuleBuilderOptions<T, int> IsValidNote<T>(this IRuleBuilder<T, int> ruleBuilder)
+        {
+            return ruleBuilder.Must(q => q >= 0 && q<=100);
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace ProjetoPadawanTests
                 Cpf = "18549528630",
                 DataNascimento = Convert.ToDateTime("20/5/1998")
             };
-            var result = new AlunoValidador().Validar(aluno);
+            var result = new CadastrarAlunoValidador().Validar(aluno);
             Assert.True(result.IsValid);
         }
         [Fact]
@@ -29,7 +29,7 @@ namespace ProjetoPadawanTests
                 Cpf = "18549528630",
                 DataNascimento = Convert.ToDateTime("20/5/1998")
             };
-            var result = new AlunoValidador().Validar(aluno);
+            var result = new CadastrarAlunoValidador().Validar(aluno);
             Assert.False(result.IsValid);
         }
         [Fact]
@@ -42,7 +42,7 @@ namespace ProjetoPadawanTests
                 Cpf = "18549528630",
                 DataNascimento = Convert.ToDateTime("20/5/1998")
             };
-            var result = new AlunoValidador().Validar(aluno);
+            var result = new CadastrarAlunoValidador().Validar(aluno);
             Assert.False(result.IsValid);
         }
         [Fact]
@@ -55,7 +55,7 @@ namespace ProjetoPadawanTests
                 Cpf = "18549528630",
                 DataNascimento = Convert.ToDateTime("20/5/1998")
             };
-            var result = new AlunoValidador().Validar(aluno);
+            var result = new CadastrarAlunoValidador().Validar(aluno);
             Assert.False(result.IsValid);
         }
         [Fact]
@@ -68,7 +68,7 @@ namespace ProjetoPadawanTests
                 Cpf = "185495286305",
                 DataNascimento = Convert.ToDateTime("20/5/1998")
             };
-            var result = new AlunoValidador().Validar(aluno);
+            var result = new CadastrarAlunoValidador().Validar(aluno);
             Assert.False(result.IsValid);
         }
         [Fact]
@@ -81,7 +81,7 @@ namespace ProjetoPadawanTests
                 Cpf = "18549a528630",
                 DataNascimento = Convert.ToDateTime("20/5/1998")
             };
-            var result = new AlunoValidador().Validar(aluno);
+            var result = new CadastrarAlunoValidador().Validar(aluno);
             Assert.False(result.IsValid);
         }
         [Fact]
@@ -94,7 +94,7 @@ namespace ProjetoPadawanTests
                 Cpf = "185452630",
                 DataNascimento = Convert.ToDateTime("20/5/1998")
             };
-            var result = new AlunoValidador().Validar(aluno);
+            var result = new CadastrarAlunoValidador().Validar(aluno);
             Assert.False(result.IsValid);
         }
         [Fact]
@@ -107,7 +107,7 @@ namespace ProjetoPadawanTests
                 Cpf = "185495*28630",
                 DataNascimento = Convert.ToDateTime("20/5/1998")
             };
-            var result = new AlunoValidador().Validar(aluno);
+            var result = new CadastrarAlunoValidador().Validar(aluno);
             Assert.False(result.IsValid);
         }
         [Fact]
@@ -120,7 +120,7 @@ namespace ProjetoPadawanTests
                 Cpf = "18549528630",
                 DataNascimento = Convert.ToDateTime("02/01/2002")
             };
-            var result = new AlunoValidador().Validar(aluno);
+            var result = new CadastrarAlunoValidador().Validar(aluno);
             Assert.False(result.IsValid);
         }
         [Fact]
@@ -133,7 +133,7 @@ namespace ProjetoPadawanTests
                 Cpf = "18549528630",
                 DataNascimento = Convert.ToDateTime("30/02/1998")
             };
-            var result = new AlunoValidador().Validar(aluno);
+            var result = new CadastrarAlunoValidador().Validar(aluno);
             Assert.True(result.IsValid);
         }
     }

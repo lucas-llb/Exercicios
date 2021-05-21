@@ -14,5 +14,9 @@ namespace PadawanInfra.Repository
         public AlunoRepository(AlunoContext dbContext, DbSet<Alunos> dbSet) : base(dbContext, dbSet)
         {
         }
+        public bool VerificaCpfExiste(string cpf)
+        {
+            return _dbSet.Where(q => q.Cpf == cpf).Any();
+        }
     }
 }

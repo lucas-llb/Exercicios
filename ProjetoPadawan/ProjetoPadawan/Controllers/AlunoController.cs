@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PadawanApplication.Interfaces;
@@ -9,7 +7,7 @@ using ProjetoPadawan.Models;
 namespace ProjetoPadawan.Controllers
 {
     [ApiController]
-    [Route("AlunoController")]
+    [Route("api/[controller]")]
     public class AlunoController : ControllerBase
     {
         private readonly IAlunoService _alunoService;
@@ -20,7 +18,7 @@ namespace ProjetoPadawan.Controllers
         }
 
         [HttpGet]
-        [Route("listaraluno")]
+        [Route("listar")]
         public async Task<IActionResult> Get()
         {
             try
@@ -34,7 +32,7 @@ namespace ProjetoPadawan.Controllers
         }
 
         [HttpPost]
-        [Route("cadastraraluno")]
+        [Route("cadastrar")]
         public async Task<IActionResult> Post(Alunos aluno)
         {
             var result = await _alunoService.CreateAsync(aluno);
@@ -49,13 +47,13 @@ namespace ProjetoPadawan.Controllers
         }
 
         [HttpDelete]
-        [Route("deletaraluno")]
+        [Route("deletar")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var result = await _alunoService.DeleteAsync(id);
             if (result.Success)
             {
-                return Ok("Categoria deletada com sucesso!");
+                return Ok("Aluno deletado com sucesso!");
             }
             else
             {

@@ -1,10 +1,12 @@
-﻿using System;
+﻿using ProjetoPadawan.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace PadawanInfra.Interfaces
 {
-    public interface IMateriasRepository
+    public interface IMateriasRepository : IGenericRepository<Materias>
     {
+        bool VerificaMateriaExiste(string nome);
     }
 }

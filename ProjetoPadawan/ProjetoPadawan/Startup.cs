@@ -58,7 +58,7 @@ namespace ProjetoPadawan
         public void DependencyInjection(IServiceCollection services)
         {
             services.AddScoped<IAlunoRepository, AlunoRepository>();
-            services.AddScoped<IAlunoValidator, AlunoValidador>();
+            services.AddScoped<IAlunoValidator, CadastrarAlunoValidador>();
             services.AddScoped<IDeletarAlunoValidator, DeletarAlunoValidator>();
         }
     }
